@@ -54,6 +54,7 @@ updateTop5List = async (req, res) => {
         top5List.name = body.name
         top5List.items = body.items
         top5List.ownerEmail = body.ownerEmail
+        top5List.ownerUsername = body.ownerUsername
         top5List.userLikes = body.userLikes
         top5List.userDislikes = body.userDislikes
         top5List

@@ -88,6 +88,7 @@ function ListCard(props) {
                 <div style={{display: 'inline'}}>{top5List.userDislikes.length} Dislikes </div>
                 <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
             </div>
+            <div>Made by: {top5List.ownerUsername}</div>
             <div onClick={handleOpen}>Open</div>
         </div>
 
@@ -102,6 +103,7 @@ function ListCard(props) {
                     <div style={{display: 'inline'}}>{top5List.userDislikes.length} Dislikes </div>
                     <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
                 </div>
+                <div>Made by: {top5List.ownerUsername}</div>
                 <div onClick={handleOpen}>Close</div>
                 <div>{top5List.items[0]}</div>
                 <div>{top5List.items[1]}</div>

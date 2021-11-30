@@ -219,11 +219,13 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION CREATES A NEW LIST
     store.createNewList = async function () {
+        console.log(auth.user);
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
             items: ["?", "?", "?", "?", "?"],
             ownerEmail: auth.user.email,
+            ownerUsername: auth.user.username,
             userLikes: [],
             userDislikes: []
         };
