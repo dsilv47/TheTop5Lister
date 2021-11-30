@@ -144,9 +144,9 @@ body {
 #top5-list-selector {
   position: absolute;
   left: 0%;
-  top: 10%;
+  top: 10%; /*this&height is how you add toolbar*/
   width: 100%;
-  height: 80%;
+  height: 82%;
   background-color: var(--swatch-primary);
 }
 
@@ -195,7 +195,7 @@ body {
   left: 0%;
   top: 10%;
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: scroll;
