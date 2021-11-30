@@ -1,6 +1,5 @@
 import AppBanner from './AppBanner'
 import DeleteModal from './DeleteModal'
-import EditToolbar from './EditToolbar'
 import ErrorModal from './ErrorModal'
 import HomeScreen from './HomeScreen'
 import HomeWrapper from './HomeWrapper'
@@ -20,7 +19,6 @@ import WorkspaceScreen from './WorkspaceScreen'
 export { 
     AppBanner, 
     DeleteModal,
-    EditToolbar, 
     ErrorModal,
     HomeScreen,
     HomeWrapper,
