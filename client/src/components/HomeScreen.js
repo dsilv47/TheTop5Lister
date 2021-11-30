@@ -4,7 +4,8 @@ import ListCard from './ListCard.js'
 import { Fab, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import List from '@mui/material/List';
-import DeleteModal from './DeleteModal.js'
+import DeleteModal from './DeleteModal.js';
+import ViewModeToolbar from './ViewModeToolbar.js';
 /*
     This React component lists all the top5 lists in the UI.
     
@@ -14,7 +15,7 @@ const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadIdNamePairs();
+        store.loadLists();
     }, []);
 
     function handleCreateNewList() {
@@ -25,11 +26,10 @@ const HomeScreen = () => {
         listCard = 
             <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
             {
-                store.idNamePairs.map((pair) => (
+                store.top5Lists.map((list) => (
                     <ListCard
-                        key={pair._id}
-                        idNamePair={pair}
-                        selected={false}
+                        key={list._id}
+                        top5List={list}
                     />
                 ))
             }

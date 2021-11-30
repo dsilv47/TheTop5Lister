@@ -19,6 +19,7 @@ export const GlobalStoreActionType = {
     CLOSE_CURRENT_LIST: "CLOSE_CURRENT_LIST",
     CREATE_NEW_LIST: "CREATE_NEW_LIST",
     LOAD_ID_NAME_PAIRS: "LOAD_ID_NAME_PAIRS",
+    LOAD_LISTS: "LOAD_LISTS",
     MARK_LIST_FOR_DELETION: "MARK_LIST_FOR_DELETION",
     UNMARK_LIST_FOR_DELETION: "UNMARK_LIST_FOR_DELETION",
     SET_CURRENT_LIST: "SET_CURRENT_LIST",
@@ -31,6 +32,7 @@ export const GlobalStoreActionType = {
 function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
+        top5Lists: [],
         idNamePairs: [],
         currentList: null,
         newListCounter: 0,
@@ -51,6 +53,7 @@ function GlobalStoreContextProvider(props) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.CHANGE_LIST_NAME: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: payload.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
@@ -62,6 +65,7 @@ function GlobalStoreContextProvider(props) {
             // STOP EDITING THE CURRENT LIST
             case GlobalStoreActionType.CLOSE_CURRENT_LIST: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
@@ -73,6 +77,7 @@ function GlobalStoreContextProvider(props) {
             // CREATE A NEW LIST
             case GlobalStoreActionType.CREATE_NEW_LIST: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter + 1,
@@ -81,10 +86,23 @@ function GlobalStoreContextProvider(props) {
                     listMarkedForDeletion: null
                 })
             }
-            // GET ALL THE LISTS SO WE CAN PRESENT THEM
+            // GET ALL THE ID NAME PAIRS SO WE CAN PRESENT THEM
             case GlobalStoreActionType.LOAD_ID_NAME_PAIRS: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: payload,
+                    currentList: null,
+                    newListCounter: store.newListCounter,
+                    isListNameEditActive: false,
+                    isItemEditActive: false,
+                    listMarkedForDeletion: null
+                });
+            }
+            // GET ALL THE LISTS
+            case GlobalStoreActionType.LOAD_LISTS: {
+                return setStore({
+                    top5Lists: payload,
+                    idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -95,6 +113,7 @@ function GlobalStoreContextProvider(props) {
             // PREPARE TO DELETE A LIST
             case GlobalStoreActionType.MARK_LIST_FOR_DELETION: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
@@ -106,6 +125,7 @@ function GlobalStoreContextProvider(props) {
             // PREPARE TO DELETE A LIST
             case GlobalStoreActionType.UNMARK_LIST_FOR_DELETION: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
@@ -117,6 +137,7 @@ function GlobalStoreContextProvider(props) {
             // UPDATE A LIST
             case GlobalStoreActionType.SET_CURRENT_LIST: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter,
@@ -128,6 +149,7 @@ function GlobalStoreContextProvider(props) {
             // START EDITING A LIST ITEM
             case GlobalStoreActionType.SET_ITEM_EDIT_ACTIVE: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: store.currentList,
                     newListCounter: store.newListCounter,
@@ -139,6 +161,7 @@ function GlobalStoreContextProvider(props) {
             // START EDITING A LIST NAME
             case GlobalStoreActionType.SET_LIST_NAME_EDIT_ACTIVE: {
                 return setStore({
+                    top5Lists: store.top5Lists,
                     idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter,
@@ -200,7 +223,9 @@ function GlobalStoreContextProvider(props) {
         let payload = {
             name: newListName,
             items: ["?", "?", "?", "?", "?"],
-            ownerEmail: auth.user.email
+            ownerEmail: auth.user.email,
+            userLikes: [],
+            userDislikes: []
         };
         const response = await api.createTop5List(payload);
         if (response.data.success) {
@@ -234,6 +259,20 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.loadLists = async function () {
+        const response = await api.getTop5Lists();
+        if (response.data.success) {
+            let top5Lists = response.data.data;
+            storeReducer({
+                type: GlobalStoreActionType.LOAD_LISTS,
+                payload: top5Lists
+            });
+        }
+        else {
+            console.log("API FAILED TO LOAD LISTS");
+        }
+    }
+
     // THE FOLLOWING 5 FUNCTIONS ARE FOR COORDINATING THE DELETION
     // OF A LIST, WHICH INCLUDES USING A VERIFICATION MODAL. THE
     // FUNCTIONS ARE markListForDeletion, deleteList, deleteMarkedList,
@@ -253,7 +292,7 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = async function (listToDelete) {
         let response = await api.deleteTop5ListById(listToDelete._id);
         if (response.data.success) {
-            store.loadIdNamePairs();
+            store.loadLists();
             history.push("/");
         }
     }
@@ -318,6 +357,61 @@ function GlobalStoreContextProvider(props) {
             type: GlobalStoreActionType.SET_ITEM_EDIT_ACTIVE,
             payload: null
         });
+    }
+
+    store.handleLike = async function (id) {
+        const response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            if (top5List.userDislikes.indexOf(auth.user.email) !== -1) {
+                top5List.userDislikes.splice(top5List.userDislikes.indexOf(auth.user.email), 1);
+                top5List.userLikes[top5List.userLikes.length] = auth.user.email;
+            }
+            else if (top5List.userLikes.indexOf(auth.user.email) !== -1) {
+                top5List.userLikes.splice(top5List.userLikes.indexOf(auth.user.email), 1);
+            }
+            else {
+                top5List.userLikes[top5List.userLikes.length] = auth.user.email;
+            }
+            const response2 = await api.updateTop5ListById(id, top5List);
+            if (response2.data.success) {
+                store.loadLists();
+            }
+            else {
+                console.log("API FAILED TO UPDATE TOP5LIST");
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LIST");
+        }
+    }
+
+    store.handleDislike = async function (id) {
+        const response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            if (top5List.userLikes.indexOf(auth.user.email) !== -1) {
+                top5List.userLikes.splice(top5List.userLikes.indexOf(auth.user.email), 1);
+                top5List.userDislikes[top5List.userDislikes.length] = auth.user.email;
+            }
+            else if (top5List.userDislikes.indexOf(auth.user.email) !== -1) {
+                top5List.userDislikes.splice(top5List.userDislikes.indexOf(auth.user.email), 1);
+            }
+            else {
+                top5List.userDislikes[top5List.userDislikes.length] = auth.user.email;
+            }
+
+            const response2 = await api.updateTop5ListById(id, top5List);
+            if (response2.data.success) {
+                store.loadLists();
+            }
+            else {
+                console.log("API FAILED TO UPDATE TOP5LIST");
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LIST");
+        }
     }
 
     return (

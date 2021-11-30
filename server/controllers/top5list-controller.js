@@ -54,6 +54,8 @@ updateTop5List = async (req, res) => {
         top5List.name = body.name
         top5List.items = body.items
         top5List.ownerEmail = body.ownerEmail
+        top5List.userLikes = body.userLikes
+        top5List.userDislikes = body.userDislikes
         top5List
             .save()
             .then(() => {
@@ -101,7 +103,7 @@ getTop5Lists = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!top5Lists.length) {
+        if (top5Lists.length < 0) {
             return res
                 .status(404)
                 .json({ success: false, error: `Top 5 Lists not found` })
@@ -114,7 +116,7 @@ getTop5ListPairs = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!top5Lists) {
+        if (top5Lists.length < 0) {
             console.log("!top5Lists.length");
             return res
                 .status(404)

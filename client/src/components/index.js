@@ -9,6 +9,7 @@ import RegisterScreen from './RegisterScreen'
 import SplashScreen from './SplashScreen'
 import Statusbar from './Statusbar'
 import Top5Item from './Top5Item'
+import ViewModeToolbar from './ViewModeToolbar'
 import WorkspaceScreen from './WorkspaceScreen'
 /*
     This serves as a module so that we can import
@@ -28,4 +29,5 @@ export {
     SplashScreen,
     Statusbar, 
     Top5Item, 
+    ViewModeToolbar,
     WorkspaceScreen }

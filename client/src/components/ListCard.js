@@ -18,9 +18,10 @@ function ListCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [editActive, setEditActive] = useState(false);
     const [text, setText] = useState("");
-    const { idNamePair } = props;
+    const [opened, setOpened] = useState(false);
+    const { top5List } = props;
 
-    function handleLoadList(event, id) {
+    /*function handleLoadList(event, id) {
         if (!event.target.disabled) {
             // CHANGE THE CURRENT LIST
             store.setCurrentList(id);
@@ -41,9 +42,9 @@ function ListCard(props) {
         setEditActive(newActive);
     }
 
-    async function handleDeleteList(event, id) {
+    async function handleDeleteList(event) {
         event.stopPropagation();
-        store.markListForDeletion(id);
+        store.markListForDeletion(top5List._id);
     }
 
     function handleKeyPress(event) {
@@ -55,9 +56,61 @@ function ListCard(props) {
     }
     function handleUpdateText(event) {
         setText(event.target.value);
+    }*/
+
+    function handleOpen() {
+        let newOpened = !opened;
+        setOpened(newOpened);
+    }
+
+    async function handleLike(event) {
+        //event.stopPropagation();
+        store.handleLike(top5List._id);
+    }
+
+    async function handleDislike(event) {
+        //event.stopPropagation();
+        store.handleDislike(top5List._id);
+    }
+
+    async function handleDeleteList(event) {
+        event.stopPropagation();
+        store.markListForDeletion(top5List._id);
     }
 
     let cardElement =
+        <div>
+            <div>
+                <div style={{display: 'inline'}}>{top5List.name} </div>
+                <div style={{display: 'inline'}} onClick={handleLike}>LikeButton </div>
+                <div style={{display: 'inline'}}>{top5List.userLikes.length} Likes </div>
+                <div style={{display: 'inline'}} onClick={handleDislike}>DislikeButton </div>
+                <div style={{display: 'inline'}}>{top5List.userDislikes.length} Dislikes </div>
+                <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
+            </div>
+            <div onClick={handleOpen}>Open</div>
+        </div>
+
+    if (opened) {
+        cardElement = 
+            <div>
+                <div>
+                    <div style={{display: 'inline'}}>{top5List.name} </div>
+                    <div style={{display: 'inline'}} onClick={handleLike}>LikeButton </div>
+                    <div style={{display: 'inline'}}>{top5List.userLikes.length} Likes </div>
+                    <div style={{display: 'inline'}} onClick={handleDislike}>DislikeButton </div>
+                    <div style={{display: 'inline'}}>{top5List.userDislikes.length} Dislikes </div>
+                    <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
+                </div>
+                <div onClick={handleOpen}>Close</div>
+                <div>{top5List.items[0]}</div>
+                <div>{top5List.items[1]}</div>
+                <div>{top5List.items[2]}</div>
+                <div>{top5List.items[3]}</div>
+                <div>{top5List.items[4]}</div>
+            </div>
+    }
+    /*let cardElement =
         <ListItem
             id={idNamePair._id}
             key={idNamePair._id}
@@ -105,7 +158,7 @@ function ListCard(props) {
                 InputLabelProps={{style: {fontSize: 24}}}
                 autoFocus
             />
-    }
+    }*/
     return (
         cardElement
     );
