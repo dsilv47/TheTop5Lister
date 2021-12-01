@@ -9,7 +9,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import GroupsIcon from '@mui/icons-material/Groups';
+import FunctionsIcon from '@mui/icons-material/Functions';
 
 export default function ViewModeToolbar() {
     const { auth } = useContext(AuthContext);
@@ -25,96 +28,28 @@ export default function ViewModeToolbar() {
         setAnchorEl(null);
     };
 
-    const handleLogout = () => {
-        handleMenuClose();
-        auth.logoutUser(store);
-    }
-
-    const menuId = 'primary-search-account-menu';
-    const loggedOutMenu = (
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleMenuClose}><Link to='/login/'>Login</Link></MenuItem>
-            <MenuItem onClick={handleMenuClose}><Link to='/register/'>Create New Account</Link></MenuItem>
-        </Menu>
-    );
-    const loggedInMenu = 
-        <Menu
-            anchorEl={anchorEl}
-            anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            id={menuId}
-            keepMounted
-            transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-            }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
-        >
-            <MenuItem onClick={handleLogout}>Logout</MenuItem>
-        </Menu>        
-
-    let menu = loggedOutMenu;
-    if (auth.loggedIn) {
-        menu = loggedInMenu;
-    }
-    
-    function getAccountMenu(loggedIn) {
-        if (loggedIn) {
-            let initials = auth.user.firstName.substring(0,1) + auth.user.lastName.substring(0,1);
-            return <div id="top5-banner-initials">{initials}</div>;
-        }
-        else return <AccountCircle id="top5-banner-button"/>;
-    }
-
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" id="top5-view-mode-toolbar">
+            <AppBar position="static" id="top5-view-mode-toolbar" sx={{backgroundColor: '#c4c4c4'}}>
                 <Toolbar>
-                    <Typography                        
-                        variant="h4"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}                        
-                    >
-                        <Link style={{ textDecoration: 'none', color: '#c8af45', fontSize: '45px' }} to='/'>T<sup>5</sup>L</Link>
-                    </Typography>
+                    <IconButton size="large">
+                        <Link to='/'><HomeIcon/></Link>
+                    </IconButton>
+                    <IconButton size="large">
+                        <Link to='/all'><GroupsIcon/></Link>
+                    </IconButton>
+                    <IconButton size="large">
+                        <Link to='/users'><PersonIcon/></Link>
+                    </IconButton>
+                    <IconButton size="large">
+                        <Link to='/community'><FunctionsIcon/></Link>
+                    </IconButton>
                     <Box sx={{ flexGrow: 1 }}></Box>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            id="top5-banner-button"
-                            size="large"
-                            edge="end"
-                            aria-label="account of current user"
-                            aria-controls={menuId}
-                            aria-haspopup="true"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            { getAccountMenu(auth.loggedIn) }
-                        </IconButton>
+                        {/*search bar & sort menu */}
                     </Box>
                 </Toolbar>
             </AppBar>
-            {
-                menu
-            }
         </Box>
     );
 }

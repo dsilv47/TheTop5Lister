@@ -12,7 +12,7 @@ export default function SplashScreen() {
             <div id="splash-screen-dev">Developed by David Silverman</div>
             <Link to='/register/' style={{textDecoration: 'none'}}><Button variant="contained" id="splash-screen-button" >Create Account</Button></Link>
             <Link to='/login/' style={{textDecoration: 'none'}}><Button variant="contained" id="splash-screen-button">Login</Button></Link>
-            <Button variant="contained" id="splash-screen-button">Continue as Guest</Button>
+            <Link to='/community' style={{textDecoration: 'none'}}><Button variant="contained" id="splash-screen-button">Continue as Guest</Button></Link>
         </div>
     )
 }

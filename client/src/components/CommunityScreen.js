@@ -11,7 +11,7 @@ import ViewModeToolbar from './ViewModeToolbar.js';
     
     @author McKilla Gorilla
 */
-const HomeScreen = () => {
+const CommunityScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
@@ -61,4 +61,4 @@ const HomeScreen = () => {
         </div>)
 }
 
-export default HomeScreen;
+export default CommunityScreen;
