@@ -9,8 +9,9 @@ const Top5ListSchema = new Schema(
         ownerUsername: { type: String, required: true },
         userLikes: { type: [String], required: true },
         userDislikes: { type: [String], required: true },
-        /*usernameCommentPairs: { type: [{String, String}], required: true },
-        published: { type: Boolean, required: true },
+        usernameCommentPairs: { type: [Object], required: true },
+        viewCount: { type: Number, required: true },
+        /*published: { type: Boolean, required: true },
         isCommunity: { type: Boolean, required: true }*/
     },
     { timestamps: true },

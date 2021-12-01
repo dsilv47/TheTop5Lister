@@ -18,7 +18,6 @@ export const GlobalStoreActionType = {
     CHANGE_LIST_NAME: "CHANGE_LIST_NAME",
     CLOSE_CURRENT_LIST: "CLOSE_CURRENT_LIST",
     CREATE_NEW_LIST: "CREATE_NEW_LIST",
-    LOAD_ID_NAME_PAIRS: "LOAD_ID_NAME_PAIRS",
     LOAD_LISTS: "LOAD_LISTS",
     MARK_LIST_FOR_DELETION: "MARK_LIST_FOR_DELETION",
     UNMARK_LIST_FOR_DELETION: "UNMARK_LIST_FOR_DELETION",
@@ -33,7 +32,6 @@ function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
         top5Lists: [],
-        idNamePairs: [],
         currentList: null,
         newListCounter: 0,
         listNameActive: false,
@@ -53,8 +51,7 @@ function GlobalStoreContextProvider(props) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.CHANGE_LIST_NAME: {
                 return setStore({
-                    top5Lists: store.top5Lists,
-                    idNamePairs: payload.idNamePairs,
+                    top5Lists: payload.top5Lists,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -66,7 +63,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.CLOSE_CURRENT_LIST: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -78,7 +74,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.CREATE_NEW_LIST: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter + 1,
                     isListNameEditActive: false,
@@ -86,23 +81,10 @@ function GlobalStoreContextProvider(props) {
                     listMarkedForDeletion: null
                 })
             }
-            // GET ALL THE ID NAME PAIRS SO WE CAN PRESENT THEM
-            case GlobalStoreActionType.LOAD_ID_NAME_PAIRS: {
-                return setStore({
-                    top5Lists: store.top5Lists,
-                    idNamePairs: payload,
-                    currentList: null,
-                    newListCounter: store.newListCounter,
-                    isListNameEditActive: false,
-                    isItemEditActive: false,
-                    listMarkedForDeletion: null
-                });
-            }
             // GET ALL THE LISTS
             case GlobalStoreActionType.LOAD_LISTS: {
                 return setStore({
                     top5Lists: payload,
-                    idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -114,7 +96,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.MARK_LIST_FOR_DELETION: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -126,7 +107,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.UNMARK_LIST_FOR_DELETION: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -138,7 +118,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.SET_CURRENT_LIST: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -150,7 +129,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.SET_ITEM_EDIT_ACTIVE: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: store.currentList,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
@@ -162,7 +140,6 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.SET_LIST_NAME_EDIT_ACTIVE: {
                 return setStore({
                     top5Lists: store.top5Lists,
-                    idNamePairs: store.idNamePairs,
                     currentList: payload,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: true,
@@ -188,19 +165,19 @@ function GlobalStoreContextProvider(props) {
             async function updateList(top5List) {
                 response = await api.updateTop5ListById(top5List._id, top5List);
                 if (response.data.success) {
-                    async function getListPairs() {
-                        response = await api.getTop5ListPairs();
+                    async function getLists() {
+                        response = await api.getTop5Lists();
                         if (response.data.success) {
-                            let pairsArray = response.data.idNamePairs.filter(pair => (pair.ownerEmail === auth.user.email));
+                            let top5Lists = response.data.top5Lists;
                             storeReducer({
                                 type: GlobalStoreActionType.CHANGE_LIST_NAME,
                                 payload: {
-                                    idNamePairs: pairsArray
+                                    top5Lists: top5Lists
                                 }
                             });
                         }
                     }
-                    getListPairs(top5List);
+                    getLists(top5List);
                 }
             }
             updateList(top5List);
@@ -219,7 +196,6 @@ function GlobalStoreContextProvider(props) {
 
     // THIS FUNCTION CREATES A NEW LIST
     store.createNewList = async function () {
-        console.log(auth.user);
         let newListName = "Untitled" + store.newListCounter;
         let payload = {
             name: newListName,
@@ -227,7 +203,9 @@ function GlobalStoreContextProvider(props) {
             ownerEmail: auth.user.email,
             ownerUsername: auth.user.username,
             userLikes: [],
-            userDislikes: []
+            userDislikes: [],
+            usernameCommentPairs: [],
+            viewCount: 0
         };
         const response = await api.createTop5List(payload);
         if (response.data.success) {
@@ -243,21 +221,6 @@ function GlobalStoreContextProvider(props) {
         }
         else {
             console.log("API FAILED TO CREATE A NEW LIST");
-        }
-    }
-
-    // THIS FUNCTION LOADS ALL THE ID, NAME PAIRS SO WE CAN LIST ALL THE LISTS
-    store.loadIdNamePairs = async function () {
-        const response = await api.getTop5ListPairs();
-        if (response.data.success) {
-            let pairsArray = response.data.idNamePairs.filter(pair => (pair.ownerEmail === auth.user.email));
-            storeReducer({
-                type: GlobalStoreActionType.LOAD_ID_NAME_PAIRS,
-                payload: pairsArray
-            });
-        }
-        else {
-            console.log("API FAILED TO GET THE LIST PAIRS");
         }
     }
 
@@ -367,13 +330,13 @@ function GlobalStoreContextProvider(props) {
             let top5List = response.data.top5List;
             if (top5List.userDislikes.indexOf(auth.user.email) !== -1) {
                 top5List.userDislikes.splice(top5List.userDislikes.indexOf(auth.user.email), 1);
-                top5List.userLikes[top5List.userLikes.length] = auth.user.email;
+                top5List.userLikes.push(auth.user.email);
             }
             else if (top5List.userLikes.indexOf(auth.user.email) !== -1) {
                 top5List.userLikes.splice(top5List.userLikes.indexOf(auth.user.email), 1);
             }
             else {
-                top5List.userLikes[top5List.userLikes.length] = auth.user.email;
+                top5List.userLikes.push(auth.user.email);
             }
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
@@ -394,15 +357,55 @@ function GlobalStoreContextProvider(props) {
             let top5List = response.data.top5List;
             if (top5List.userLikes.indexOf(auth.user.email) !== -1) {
                 top5List.userLikes.splice(top5List.userLikes.indexOf(auth.user.email), 1);
-                top5List.userDislikes[top5List.userDislikes.length] = auth.user.email;
+                top5List.userDislikes.push(auth.user.email);
             }
             else if (top5List.userDislikes.indexOf(auth.user.email) !== -1) {
                 top5List.userDislikes.splice(top5List.userDislikes.indexOf(auth.user.email), 1);
             }
             else {
-                top5List.userDislikes[top5List.userDislikes.length] = auth.user.email;
+                top5List.userDislikes.push(auth.user.email);
             }
 
+            const response2 = await api.updateTop5ListById(id, top5List);
+            if (response2.data.success) {
+                store.loadLists();
+            }
+            else {
+                console.log("API FAILED TO UPDATE TOP5LIST");
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LIST");
+        }
+    }
+
+    store.handleComment = async function (id, comment) {
+        const response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            let pair = {
+                username: auth.user.username, 
+                comment: comment
+            };
+            top5List.usernameCommentPairs.push(pair);
+            const response2 = await api.updateTop5ListById(id, top5List);
+            if (response2.data.success) {
+                store.loadLists();
+            }
+            else {
+                console.log("API FAILED TO UPDATE TOP5LIST");
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LIST");
+        }
+    }
+
+    store.handleView = async function (id) {
+        const response = await api.getTop5ListById(id);
+        if (response.data.success) {
+            let top5List = response.data.top5List;
+            top5List.viewCount++;
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
                 store.loadLists();

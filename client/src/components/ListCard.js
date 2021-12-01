@@ -59,6 +59,9 @@ function ListCard(props) {
     }*/
 
     function handleOpen() {
+        if (!opened) {
+            store.handleView(top5List._id);
+        }
         let newOpened = !opened;
         setOpened(newOpened);
     }
@@ -78,6 +81,15 @@ function ListCard(props) {
         store.markListForDeletion(top5List._id);
     }
 
+    function handleLoadList(event) {
+        store.setCurrentList(top5List._id);
+    }
+
+    async function handleComment(event) {
+        let comment = "hello";
+        store.handleComment(top5List._id, comment);
+    }
+
     let cardElement =
         <div>
             <div>
@@ -89,6 +101,8 @@ function ListCard(props) {
                 <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
             </div>
             <div>Made by: {top5List.ownerUsername}</div>
+            <div>Views: {top5List.viewCount}</div>
+            <div onClick={handleLoadList}>EDIT</div>
             <div onClick={handleOpen}>Open</div>
         </div>
 
@@ -104,12 +118,19 @@ function ListCard(props) {
                     <div style={{display: 'inline'}} onClick={handleDeleteList}>Delete</div>
                 </div>
                 <div>Made by: {top5List.ownerUsername}</div>
+                <div>Views: {top5List.viewCount}</div>
+                <div onClick={handleLoadList}>EDIT</div>
                 <div onClick={handleOpen}>Close</div>
                 <div>{top5List.items[0]}</div>
                 <div>{top5List.items[1]}</div>
                 <div>{top5List.items[2]}</div>
                 <div>{top5List.items[3]}</div>
                 <div>{top5List.items[4]}</div>
+                <div>Comments:</div>
+                <div>
+                    {top5List.usernameCommentPairs.map((pair) => <div>{pair.username}: {pair.comment}</div>)}
+                </div>
+                <div onClick={handleComment}>Add Comment</div>
             </div>
     }
     /*let cardElement =
