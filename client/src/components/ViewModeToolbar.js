@@ -13,6 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import PersonIcon from '@mui/icons-material/Person';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FunctionsIcon from '@mui/icons-material/Functions';
+import TextField from '@mui/material/TextField';
 
 export default function ViewModeToolbar() {
     const { auth } = useContext(AuthContext);
@@ -27,6 +28,12 @@ export default function ViewModeToolbar() {
     const handleMenuClose = () => {
         setAnchorEl(null);
     };
+
+    function handleSearch(event) {
+        if (event.code === "Enter") {
+            store.loadLists(event.target.value);
+        }
+    }
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -44,7 +51,15 @@ export default function ViewModeToolbar() {
                     <IconButton size="large">
                         <Link to='/community'><FunctionsIcon/></Link>
                     </IconButton>
-                    <Box sx={{ flexGrow: 1 }}></Box>
+                    <TextField
+                        margin="normal"
+                        fullWidth
+                        id="search-bar"
+                        label="Search"
+                        name="search"
+                        autoComplete=""
+                        onKeyPress={handleSearch}
+                    />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         {/*search bar & sort menu */}
                     </Box>

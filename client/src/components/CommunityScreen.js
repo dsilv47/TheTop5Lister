@@ -15,7 +15,7 @@ const CommunityScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists("community");
+        store.loadLists("");
     }, []);
 
     function handleCreateNewList() {

@@ -226,21 +226,30 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
-    store.loadLists = async function (mode) {
+    store.loadLists = async function (param) {
+        let mode = history.location.pathname.substring(1);
         const response = await api.getTop5Lists();
         if (response.data.success) {
             let top5Lists = response.data.data;
-            if (mode === "home") {
+            if (mode === "") {
                 top5Lists = top5Lists.filter((list) => list.ownerUsername === auth.user.username);
+                if (param !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name.indexOf(param) === 0);
+                }
             }
             else if (mode === "all") {
-                top5Lists = top5Lists;
+                if (param !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name === param);
+                }
             }
             else if (mode === "users") {
-                top5Lists = [];
+                top5Lists = (param === "") ? [] : top5Lists.filter((list) => list.ownerUsername === param);
             }
             else if (mode === "community") {
                 top5Lists = top5Lists.filter((list) => list.isCommunity);
+                if (param !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name.indexOf(param) === 0);
+                }
             }
             storeReducer({
                 type: GlobalStoreActionType.LOAD_LISTS,
@@ -271,7 +280,7 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = async function (listToDelete) {
         let response = await api.deleteTop5ListById(listToDelete._id);
         if (response.data.success) {
-            store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
+            store.loadLists("");
             history.push("/");
         }
     }
@@ -354,7 +363,7 @@ function GlobalStoreContextProvider(props) {
             }
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
+                store.loadLists("");
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -382,7 +391,7 @@ function GlobalStoreContextProvider(props) {
 
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
+                store.loadLists("");
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -404,7 +413,7 @@ function GlobalStoreContextProvider(props) {
             top5List.usernameCommentPairs.push(pair);
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
+                store.loadLists("");
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -422,7 +431,7 @@ function GlobalStoreContextProvider(props) {
             top5List.viewCount++;
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
+                store.loadLists("");
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");

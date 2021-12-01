@@ -15,7 +15,7 @@ const AllListsScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists("all");
+        store.loadLists("");
     }, []);
 
     function handleCreateNewList() {

@@ -15,7 +15,7 @@ const UsersScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists("users");
+        store.loadLists("");
     }, []);
 
     function handleCreateNewList() {
