@@ -15,7 +15,7 @@ const CommunityScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists();
+        store.loadLists("community");
     }, []);
 
     function handleCreateNewList() {
@@ -36,7 +36,7 @@ const CommunityScreen = () => {
             </List>;
     }
     return (
-        <div id="home-screen">
+        <div id="community-screen">
             <ViewModeToolbar/>
             <div id="top5-list-selector">
                 <div id="list-selector-heading">
@@ -49,7 +49,7 @@ const CommunityScreen = () => {
                 >
                     <AddIcon />
                 </Fab>
-                    <Typography variant="h2">Your Lists</Typography>
+                    <Typography variant="h2">Your Lists (Community)</Typography>
                 </div>
                 <div id="list-selector-list">
                     {

@@ -23,7 +23,7 @@ export const GlobalStoreActionType = {
     UNMARK_LIST_FOR_DELETION: "UNMARK_LIST_FOR_DELETION",
     SET_CURRENT_LIST: "SET_CURRENT_LIST",
     SET_ITEM_EDIT_ACTIVE: "SET_ITEM_EDIT_ACTIVE",
-    SET_LIST_NAME_EDIT_ACTIVE: "SET_LIST_NAME_EDIT_ACTIVE"
+    SET_LIST_NAME_EDIT_ACTIVE: "SET_LIST_NAME_EDIT_ACTIVE",
 }
 
 // WITH THIS WE'RE MAKING OUR GLOBAL DATA STORE
@@ -205,7 +205,9 @@ function GlobalStoreContextProvider(props) {
             userLikes: [],
             userDislikes: [],
             usernameCommentPairs: [],
-            viewCount: 0
+            viewCount: 0,
+            published: false,
+            isCommunity: false
         };
         const response = await api.createTop5List(payload);
         if (response.data.success) {
@@ -224,10 +226,22 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
-    store.loadLists = async function () {
+    store.loadLists = async function (mode) {
         const response = await api.getTop5Lists();
         if (response.data.success) {
             let top5Lists = response.data.data;
+            if (mode === "home") {
+                top5Lists = top5Lists.filter((list) => list.ownerUsername === auth.user.username);
+            }
+            else if (mode === "all") {
+                top5Lists = top5Lists;
+            }
+            else if (mode === "users") {
+                top5Lists = [];
+            }
+            else if (mode === "community") {
+                top5Lists = top5Lists.filter((list) => list.isCommunity);
+            }
             storeReducer({
                 type: GlobalStoreActionType.LOAD_LISTS,
                 payload: top5Lists
@@ -257,7 +271,7 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = async function (listToDelete) {
         let response = await api.deleteTop5ListById(listToDelete._id);
         if (response.data.success) {
-            store.loadLists();
+            store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
             history.push("/");
         }
     }
@@ -340,7 +354,7 @@ function GlobalStoreContextProvider(props) {
             }
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists();
+                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -368,7 +382,7 @@ function GlobalStoreContextProvider(props) {
 
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists();
+                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -390,7 +404,7 @@ function GlobalStoreContextProvider(props) {
             top5List.usernameCommentPairs.push(pair);
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists();
+                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -408,7 +422,7 @@ function GlobalStoreContextProvider(props) {
             top5List.viewCount++;
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists();
+                store.loadLists(history.location.pathname.substring(1) === "" ? "home" : history.location.pathname.substring(1));
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");

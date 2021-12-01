@@ -15,7 +15,7 @@ const AllListsScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists();
+        store.loadLists("all");
     }, []);
 
     function handleCreateNewList() {
@@ -36,7 +36,7 @@ const AllListsScreen = () => {
             </List>;
     }
     return (
-        <div id="home-screen">
+        <div id="all-lists-screen">
             <ViewModeToolbar/>
             <div id="top5-list-selector">
                 <div id="list-selector-heading">
@@ -49,7 +49,7 @@ const AllListsScreen = () => {
                 >
                     <AddIcon />
                 </Fab>
-                    <Typography variant="h2">Your Lists</Typography>
+                    <Typography variant="h2">Your Lists (All)</Typography>
                 </div>
                 <div id="list-selector-list">
                     {

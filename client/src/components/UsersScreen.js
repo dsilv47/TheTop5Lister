@@ -15,7 +15,7 @@ const UsersScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists();
+        store.loadLists("users");
     }, []);
 
     function handleCreateNewList() {
@@ -36,7 +36,7 @@ const UsersScreen = () => {
             </List>;
     }
     return (
-        <div id="home-screen">
+        <div id="users-screen">
             <ViewModeToolbar/>
             <div id="top5-list-selector">
                 <div id="list-selector-heading">
@@ -49,7 +49,7 @@ const UsersScreen = () => {
                 >
                     <AddIcon />
                 </Fab>
-                    <Typography variant="h2">Your Lists</Typography>
+                    <Typography variant="h2">Your Lists (User)</Typography>
                 </div>
                 <div id="list-selector-list">
                     {
