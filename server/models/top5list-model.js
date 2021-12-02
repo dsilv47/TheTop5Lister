@@ -14,7 +14,7 @@ const Top5ListSchema = new Schema(
         published: { type: Boolean, required: true },
         publishDate: { type: Date, required: false },
         isCommunity: { type: Boolean, required: true },
-        itemScorePairs: { type: [Object], required: false },
+        itemScorePairs: { type: Object, required: false },
     },
     { timestamps: true },
 )

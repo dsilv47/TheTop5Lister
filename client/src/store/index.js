@@ -322,13 +322,33 @@ function GlobalStoreContextProvider(props) {
     store.updateOrCreateCommunity = async function () {
         const response = await api.getTop5Lists();
         if (response.data.success) {
-            let communityList = response.data.data.filter((list) => list.isCommunity && list.name === store.currentList.name);
-            if (communityList.length > 0) {
-                //update
+            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name === store.currentList.name);
+            if (communityLists.length === 1) {
+                let communityList = communityLists[0];
+                let items = store.currentList.items;
+                let itemScorePairs = communityList.itemScorePairs;
+                for (let i = 0; i < items.length; i++) {
+                    let key = items[i];
+                    let val = itemScorePairs[items[i]] ? itemScorePairs[items[i]] + (5-i) : (5-i);
+                    itemScorePairs[key] = val;
+                }
+                communityList.itemScorePairs = itemScorePairs;
+                const response2 = await api.updateTop5ListById(communityList._id, communityList);
+                if (response2.data.success) {
+                    store.loadLists(store.searchParam, store.sortParam);
+                }
+                else {
+                    console.log("API FAILED TO UPDATE LIST");
+                }
             }
             else {
                 let items = store.currentList.items;
-                let itemScorePairs = [{item: items[0], score: 5}, {item: items[1], score: 4}, {item: items[2], score: 3}, {item: items[3], score: 2}, {item: items[4], score: 1}];
+                let itemScorePairs = {};
+                for (let i = 0; i < items.length; i++) {
+                    let key = items[i];
+                    let val = 5-i;
+                    itemScorePairs[key] = val;
+                }
                 let payload = {
                     name: store.currentList.name,
                     items: ["?", "?", "?", "?", "?"],
@@ -342,12 +362,57 @@ function GlobalStoreContextProvider(props) {
                     isCommunity: true,
                     itemScorePairs: itemScorePairs
                 };
-                const response = await api.createTop5List(payload);
-                if (response.data.success) {
+                const response2 = await api.createTop5List(payload);
+                if (response2.data.success) {
                     store.loadLists(store.searchParam, store.sortParam);
                 }
                 else {
                     console.log("API FAILED TO CREATE A NEW LIST");
+                }
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LISTS");
+        }
+    }
+
+    // THIS FUNCTION UPDATES OR CREATES A COMMUNITY LIST
+    store.updateOrDeleteCommunity = async function () {
+        const response = await api.getTop5Lists();
+        if (response.data.success) {
+            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name === store.listMarkedForDeletion.name);
+            let listsInvolved = response.data.data.filter((list) => (!list.isCommunity) && list.name === store.listMarkedForDeletion.name)
+            if (listsInvolved.length > 1) {
+                let communityList = communityLists[0];
+                let items = store.listMarkedForDeletion.items;
+                let itemScorePairs = communityList.itemScorePairs;
+                for (let i = 0; i < items.length; i++) {
+                    let key = items[i];
+                    let val = itemScorePairs[items[i]] ? itemScorePairs[items[i]] - (5-i) : (5-i);
+                    if (val === 0) {
+                        delete itemScorePairs[key];
+                    }
+                    else {
+                        itemScorePairs[key] = val;
+                    }
+                }
+                communityList.itemScorePairs = itemScorePairs;
+                const response2 = await api.updateTop5ListById(communityList._id, communityList);
+                if (response2.data.success) {
+                    store.loadLists(store.searchParam, store.sortParam);
+                }
+                else {
+                    console.log("API FAILED TO UPDATE LIST");
+                }
+            }
+            else {
+                let communityList = communityLists[0];
+                const response2 = await api.deleteTop5ListById(communityList._id);
+                if (response2.data.success) {
+                    store.loadLists(store.searchParam, store.sortParam);
+                }
+                else {
+                    console.log("API FAILED TO UPDATE LIST");
                 }
             }
         }
@@ -381,6 +446,7 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.deleteMarkedList = function () {
+        store.updateOrDeleteCommunity();
         store.deleteList(store.listMarkedForDeletion);
     }
 

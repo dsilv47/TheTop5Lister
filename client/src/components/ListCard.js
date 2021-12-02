@@ -91,7 +91,7 @@ function ListCard(props) {
     }
 
     let editOrPublished = (top5List.publishDate) ? <div>Published: {top5List.publishDate}</div> : <div onClick={handleLoadList}>EDIT</div>;
-    let items = (top5List.isCommunity) ? top5List.itemScorePairs.map((pair) => <div>{pair.item + "-> (" + pair.score + ")"}</div>) : <div><div>{top5List.items[0]}</div>
+    let items = (top5List.isCommunity) ? Object.keys(top5List.itemScorePairs).map((key) => <div>{key + "-> (" + top5List.itemScorePairs[key] + ")"}</div>) : <div><div>{top5List.items[0]}</div>
                 <div>{top5List.items[1]}</div>
                 <div>{top5List.items[2]}</div>
                 <div>{top5List.items[3]}</div>
