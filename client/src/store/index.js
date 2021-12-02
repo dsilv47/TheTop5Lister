@@ -489,6 +489,11 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
+    store.alreadyPublished = function (name) {
+        let lists = store.top5Lists.filter((list) => list.published && list.name === name);
+        return (lists.length !== 0);
+    }
+
     return (
         <GlobalStoreContext.Provider value={{
             store

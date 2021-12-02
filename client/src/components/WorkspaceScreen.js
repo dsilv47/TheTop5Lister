@@ -1,5 +1,4 @@
-import { useContext, useEffect } from 'react'
-import Top5Item from './Top5Item.js'
+import { useContext, useEffect, useState } from 'react'
 import List from '@mui/material/List';
 import { Typography } from '@mui/material'
 import { GlobalStoreContext } from '../store/index.js'
@@ -14,30 +13,22 @@ import TextField from '@mui/material/TextField';
 */
 function WorkspaceScreen() {
     const { store } = useContext(GlobalStoreContext);
-
-    let editItems = "";
-    if (store.currentList) {
-        editItems = 
-            <List id="edit-items" sx={{ width: '100%', bgcolor: 'background.paper' }}>
-                {
-                    store.currentList.items.map((item, index) => (
-                        <Top5Item 
-                            key={'top5-item-' + (index+1)}
-                            text={item}
-                            index={index} 
-                        />
-                    ))
-                }
-            </List>;
-    }
+    const [listName, setListName] = useState(store.currentList.name);
+    const [items, setItems] = useState(store.currentList.items);
 
     function handleSave() {
-        //store.handleSave();
+        store.currentList.name = listName;
+        store.currentList.items = items;
+        store.updateCurrentList();
         store.closeCurrentList();
     }
 
     function handlePublish() {
-        //store.handlePublish();
+        store.currentList.name = listName;
+        store.currentList.items = items;
+        store.currentList.published = true;
+        store.updateCurrentList();
+        store.closeCurrentList();
     }
 
     function handleKeyPress(event) {
@@ -47,8 +38,70 @@ function WorkspaceScreen() {
     }
 
     function handleBlur(event) {
-        store.changeListName(event.target.value);
+        setListName(event.target.value);
     }
+
+    function handleItemKeyPress(event) {
+        if (event.code === "Enter") {
+            handleItemBlur(event);
+        }
+    }
+
+    function handleItemBlur(event) {
+        let list = [];
+        let index = event.target.id.substring("top5-item-".length);
+        for (let i = 0; i < items.length; i++) {
+            list[i] = (("" + i) === index) ? event.target.value : items[i];
+        }
+        setItems(list);
+    }
+
+    function isSavable() {
+        return !(listName === "");
+    }
+
+    function isPublishable() {
+        if (listName === "") {
+            return false;
+        }
+        if (store.alreadyPublished(listName)) {
+            return false;
+        }
+        for (let i = 0; i < items.length; i++) {
+            if (items[i] === "") {
+                return false;
+            }
+            for (let j = (i+1); j < items.length; j++) {
+                if (items[i] === items[j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    let editItems = "";
+    if (store.currentList) {
+        editItems = 
+            <List id="edit-items" sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                {
+                    items.map((item, index) => (
+                        <TextField
+                        margin="normal"
+                        fullWidth
+                        id={"top5-item-" + (index)}
+                        name="item"
+                        autoComplete=""
+                        defaultValue={item}
+                        onKeyPress={handleItemKeyPress}
+                        onBlur={handleItemBlur}
+                        />
+                    ))
+                }
+            </List>;
+    }
+    let savable = isSavable();
+    let publishable = isPublishable();
 
     return (
         <div>
@@ -59,7 +112,7 @@ function WorkspaceScreen() {
                         id="change-list-name"
                         name="name"
                         autoComplete=""
-                        defaultValue={store.currentList.name}
+                        defaultValue={listName}
                         onKeyPress={handleKeyPress}
                         onBlur={handleBlur}
                     />
@@ -75,8 +128,8 @@ function WorkspaceScreen() {
                     {editItems}
                 </div>
             </div>
-            <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 0, right: 100}} onClick={handleSave}>Save</Button>
-            <Button variant="contained" id="publish-button" sx={{position: 'absolute', bottom: 0, right: 0}} onClick={handlePublish}>Publish</Button>
+            <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 0, right: 100}} onClick={handleSave} disabled={!savable}>Save</Button>
+            <Button variant="contained" id="publish-button" sx={{position: 'absolute', bottom: 0, right: 0}} onClick={handlePublish} disabled={!publishable}>Publish</Button>
         </div>
     )
 }
