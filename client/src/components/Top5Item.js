@@ -32,10 +32,14 @@ function Top5Item(props) {
 
     function handleKeyPress(event) {
         if (event.code === "Enter") {
-            let index = event.target.id.substring("item-".length)-1;
+            handleBlur(event);
+        }
+    }
+
+    function handleBlur(event) {
+        let index = event.target.id.substring("item-".length)-1;
             store.updateItem(index, text);
             toggleEdit();
-        }
     }
 
     function handleUpdateText(event) {
@@ -76,6 +80,7 @@ function Top5Item(props) {
                 autoComplete="Top 5 Item Name"
                 className={itemClass}
                 onKeyPress={handleKeyPress}
+                onBlur={handleBlur}
                 onChange={handleUpdateText}
                 defaultValue={store.currentList.items[index]}
                 inputProps={{style: {fontSize: 48}}}

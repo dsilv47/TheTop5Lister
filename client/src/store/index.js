@@ -55,7 +55,7 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.CHANGE_LIST_NAME: {
                 return setStore({
                     top5Lists: payload.top5Lists,
-                    currentList: null,
+                    currentList: store.currentList,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
@@ -178,7 +178,7 @@ function GlobalStoreContextProvider(props) {
     // RESPONSE TO EVENTS INSIDE OUR COMPONENTS.
 
     // THIS FUNCTION PROCESSES CHANGING A LIST NAME
-    store.changeListName = async function (id, newName) {
+    /*store.changeListName = async function (id, newName) {
         let response = await api.getTop5ListById(id);
         if (response.data.success) {
             let top5List = response.data.top5List;
@@ -199,10 +199,16 @@ function GlobalStoreContextProvider(props) {
                         }
                     }
                     getLists(top5List);
+                    store.loadLists(store.searchParam, store.sortParam);
                 }
             }
             updateList(top5List);
         }
+    }*/
+
+    store.changeListName = function (newName) {
+        store.currentList.name = newName;
+        store.updateCurrentList();
     }
 
     // THIS FUNCTION PROCESSES CLOSING THE CURRENTLY LOADED LIST
@@ -259,6 +265,7 @@ function GlobalStoreContextProvider(props) {
                 }
             }
             else if (mode === "all") {
+                top5Lists = top5Lists.filter((list) => list.published);
                 if (searchParam !== "") {
                     top5Lists = top5Lists.filter((list) => list.name === searchParam);
                 }
