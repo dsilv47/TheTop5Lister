@@ -15,7 +15,7 @@ const HomeScreen = () => {
     const { store } = useContext(GlobalStoreContext);
 
     useEffect(() => {
-        store.loadLists("");
+        store.loadLists("", "publishNew");
     }, []);
 
     function handleCreateNewList() {

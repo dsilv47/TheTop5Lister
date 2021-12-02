@@ -1,3 +1,4 @@
+import { Global } from '@emotion/react';
 import { createContext, useContext, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import api from '../api'
@@ -36,7 +37,9 @@ function GlobalStoreContextProvider(props) {
         newListCounter: 0,
         listNameActive: false,
         itemActive: false,
-        listMarkedForDeletion: null
+        listMarkedForDeletion: null,
+        searchParam: "",
+        sortParam: "publishNew"
     });
     const history = useHistory();
 
@@ -56,7 +59,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             // STOP EDITING THE CURRENT LIST
@@ -67,7 +72,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 })
             }
             // CREATE A NEW LIST
@@ -78,18 +85,22 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter + 1,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 })
             }
             // GET ALL THE LISTS
             case GlobalStoreActionType.LOAD_LISTS: {
                 return setStore({
-                    top5Lists: payload,
+                    top5Lists: payload.top5Lists,
                     currentList: null,
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: payload.searchParam,
+                    sortParam: payload.sortParam
                 });
             }
             // PREPARE TO DELETE A LIST
@@ -100,7 +111,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: payload
+                    listMarkedForDeletion: payload,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             // PREPARE TO DELETE A LIST
@@ -111,7 +124,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             // UPDATE A LIST
@@ -122,7 +137,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             // START EDITING A LIST ITEM
@@ -133,7 +150,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: false,
                     isItemEditActive: true,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             // START EDITING A LIST NAME
@@ -144,7 +163,9 @@ function GlobalStoreContextProvider(props) {
                     newListCounter: store.newListCounter,
                     isListNameEditActive: true,
                     isItemEditActive: false,
-                    listMarkedForDeletion: null
+                    listMarkedForDeletion: null,
+                    searchParam: store.searchParam,
+                    sortParam: store.sortParam
                 });
             }
             default:
@@ -226,34 +247,53 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
-    store.loadLists = async function (param) {
+    store.loadLists = async function (searchParam, sortParam) {
         let mode = history.location.pathname.substring(1);
         const response = await api.getTop5Lists();
         if (response.data.success) {
             let top5Lists = response.data.data;
             if (mode === "") {
                 top5Lists = top5Lists.filter((list) => list.ownerUsername === auth.user.username);
-                if (param !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name.indexOf(param) === 0);
+                if (searchParam !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name.indexOf(searchParam) === 0);
                 }
             }
             else if (mode === "all") {
-                if (param !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name === param);
+                if (searchParam !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name === searchParam);
                 }
             }
             else if (mode === "users") {
-                top5Lists = (param === "") ? [] : top5Lists.filter((list) => list.ownerUsername === param);
+                top5Lists = (searchParam === "") ? [] : top5Lists.filter((list) => list.ownerUsername === searchParam);
             }
             else if (mode === "community") {
                 top5Lists = top5Lists.filter((list) => list.isCommunity);
-                if (param !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name.indexOf(param) === 0);
+                if (searchParam !== "") {
+                    top5Lists = top5Lists.filter((list) => list.name.indexOf(searchParam) === 0);
                 }
+            }
+            if (sortParam === "publishNew") {
+                //top5Lists.sort();
+            }
+            else if (sortParam === "publishOld") {
+                //top5Lists.sort();
+            }
+            else if (sortParam === "views") {
+                top5Lists.sort(function compare(a, b) {return b.viewCount - a.viewCount});
+            }
+            else if (sortParam === "likes") {
+                top5Lists.sort(function compare(a, b) {return b.userLikes.length - a.userLikes.length});
+            }
+            else if (sortParam === "dislikes") {
+                top5Lists.sort(function compare(a, b) {return b.userDislikes.length - a.userDislikes.length});
             }
             storeReducer({
                 type: GlobalStoreActionType.LOAD_LISTS,
-                payload: top5Lists
+                payload: {
+                    top5Lists: top5Lists,
+                    searchParam: searchParam,
+                    sortParam: sortParam
+                }
             });
         }
         else {
@@ -280,7 +320,7 @@ function GlobalStoreContextProvider(props) {
     store.deleteList = async function (listToDelete) {
         let response = await api.deleteTop5ListById(listToDelete._id);
         if (response.data.success) {
-            store.loadLists("");
+            store.loadLists(store.searchParam, store.sortParam);
             history.push("/");
         }
     }
@@ -363,7 +403,7 @@ function GlobalStoreContextProvider(props) {
             }
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists("");
+                store.loadLists(store.searchParam, store.sortParam);
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -391,7 +431,7 @@ function GlobalStoreContextProvider(props) {
 
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists("");
+                store.loadLists(store.searchParam, store.sortParam);
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -413,7 +453,7 @@ function GlobalStoreContextProvider(props) {
             top5List.usernameCommentPairs.push(pair);
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists("");
+                store.loadLists(store.searchParam, store.sortParam);
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");
@@ -431,7 +471,7 @@ function GlobalStoreContextProvider(props) {
             top5List.viewCount++;
             const response2 = await api.updateTop5ListById(id, top5List);
             if (response2.data.success) {
-                store.loadLists("");
+                store.loadLists(store.searchParam, store.sortParam);
             }
             else {
                 console.log("API FAILED TO UPDATE TOP5LIST");

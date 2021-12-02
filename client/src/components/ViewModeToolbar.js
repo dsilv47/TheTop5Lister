@@ -14,6 +14,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import GroupsIcon from '@mui/icons-material/Groups';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import TextField from '@mui/material/TextField';
+import SortIcon from '@mui/icons-material/Sort';
 
 export default function ViewModeToolbar() {
     const { auth } = useContext(AuthContext);
@@ -25,8 +26,10 @@ export default function ViewModeToolbar() {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleMenuClose = () => {
+    const handleMenuClose = (event) => {
         setAnchorEl(null);
+        let sortParam = event.target.id.substring("sort-".length);
+        store.loadLists(store.searchParam, sortParam);
     };
 
     function handleSearch(event) {
@@ -34,6 +37,27 @@ export default function ViewModeToolbar() {
             store.loadLists(event.target.value);
         }
     }
+
+    const sortMenu = <Menu
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        open={isMenuOpen}
+                        onClose={handleMenuClose}
+                    >
+                        <MenuItem id="sort-publishNew" onClick={handleMenuClose}>Publish Date (Newest)</MenuItem>
+                        <MenuItem id="sort-publishOld" onClick={handleMenuClose}>Publish Date (Oldest)</MenuItem>
+                        <MenuItem id="sort-views" onClick={handleMenuClose}>Views</MenuItem>
+                        <MenuItem id="sort-likes" onClick={handleMenuClose}>Likes</MenuItem>
+                        <MenuItem id="sort-dislikes" onClick={handleMenuClose}>Dislikes</MenuItem>
+                    </Menu>
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -60,11 +84,19 @@ export default function ViewModeToolbar() {
                         autoComplete=""
                         onKeyPress={handleSearch}
                     />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        {/*search bar & sort menu */}
-                    </Box>
+                    <Typography color="black">SORT BY</Typography>
+                    <IconButton
+                            id="sort-button"
+                            size="large"
+                            edge="end"
+                            onClick={handleProfileMenuOpen}
+                            color="inherit"
+                        >
+                            <SortIcon/>
+                        </IconButton>
                 </Toolbar>
             </AppBar>
+            {sortMenu}
         </Box>
     );
 }
