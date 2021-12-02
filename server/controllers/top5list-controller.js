@@ -60,7 +60,13 @@ updateTop5List = async (req, res) => {
         top5List.usernameCommentPairs = body.usernameCommentPairs
         top5List.viewCount = body.viewCount
         top5List.published = body.published
+        if (body.publishDate) {
+            top5List.publishDate = body.publishDate
+        }
         top5List.isCommunity = body.isCommunity
+        if (body.itemScorePairs) {
+            top5List.itemScorePairs = body.itemScorePairs
+        }
         top5List
             .save()
             .then(() => {

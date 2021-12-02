@@ -11,10 +11,16 @@ import TextField from '@mui/material/TextField';
     
     @author McKilla Gorilla
 */
-function WorkspaceScreen() {
+function WorkspaceScreen(props) {
     const { store } = useContext(GlobalStoreContext);
-    const [listName, setListName] = useState(store.currentList.name);
-    const [items, setItems] = useState(store.currentList.items);
+    const [listName, setListName] = useState(store.currentList ? store.currentList.name : "");
+    const [items, setItems] = useState(store.currentList ? store.currentList.items : []);
+
+    useEffect(() => {
+        if (!store.currentList) {
+            props.history.push("/");
+        }
+    }, []);
 
     function handleSave() {
         store.currentList.name = listName;
@@ -28,6 +34,10 @@ function WorkspaceScreen() {
         store.currentList.items = items;
         store.currentList.published = true;
         store.updateCurrentList();
+        let publishDate = new Date(store.currentList.updatedAt);
+        store.currentList.publishDate = publishDate;
+        store.updateCurrentList();
+        store.updateOrCreateCommunity();
         store.closeCurrentList();
     }
 

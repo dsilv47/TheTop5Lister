@@ -271,28 +271,38 @@ function GlobalStoreContextProvider(props) {
                 }
             }
             else if (mode === "users") {
-                top5Lists = (searchParam === "") ? [] : top5Lists.filter((list) => list.ownerUsername === searchParam);
+                top5Lists = (searchParam === "") ? [] : top5Lists.filter((list) => list.published && list.ownerUsername === searchParam);
             }
             else if (mode === "community") {
-                top5Lists = top5Lists.filter((list) => list.isCommunity);
+                top5Lists = top5Lists.filter((list) => list.published && list.isCommunity);
                 if (searchParam !== "") {
                     top5Lists = top5Lists.filter((list) => list.name.indexOf(searchParam) === 0);
                 }
             }
             if (sortParam === "publishNew") {
-                //top5Lists.sort();
+                top5Lists.sort(function compare(a,b) {
+                    if (a.published && b.published) {return a.publishDate - b.publishDate}
+                    else if (a.published) {return a}
+                    else if (b.published) {return b}
+                    else {return a}
+                });
             }
             else if (sortParam === "publishOld") {
-                //top5Lists.sort();
+                top5Lists.sort(function compare(a,b) {
+                    if (a.published && b.published) {return b.publishDate - a.publishDate}
+                    if (a.published) {return a}
+                    else if (b.published) {return b}
+                    else {return a}
+                });
             }
             else if (sortParam === "views") {
-                top5Lists.sort(function compare(a, b) {return b.viewCount - a.viewCount});
+                top5Lists.sort((a, b) => b.viewCount - a.viewCount);
             }
             else if (sortParam === "likes") {
-                top5Lists.sort(function compare(a, b) {return b.userLikes.length - a.userLikes.length});
+                top5Lists.sort((a, b) => b.userLikes.length - a.userLikes.length);
             }
             else if (sortParam === "dislikes") {
-                top5Lists.sort(function compare(a, b) {return b.userDislikes.length - a.userDislikes.length});
+                top5Lists.sort((a, b) => b.userDislikes.length - a.userDislikes.length);
             }
             storeReducer({
                 type: GlobalStoreActionType.LOAD_LISTS,
@@ -305,6 +315,44 @@ function GlobalStoreContextProvider(props) {
         }
         else {
             console.log("API FAILED TO LOAD LISTS");
+        }
+    }
+
+    // THIS FUNCTION UPDATES OR CREATES A COMMUNITY LIST
+    store.updateOrCreateCommunity = async function () {
+        const response = await api.getTop5Lists();
+        if (response.data.success) {
+            let communityList = response.data.data.filter((list) => list.isCommunity && list.name === store.currentList.name);
+            if (communityList.length > 0) {
+                //update
+            }
+            else {
+                let items = store.currentList.items;
+                let itemScorePairs = [{item: items[0], score: 5}, {item: items[1], score: 4}, {item: items[2], score: 3}, {item: items[3], score: 2}, {item: items[4], score: 1}];
+                let payload = {
+                    name: store.currentList.name,
+                    items: ["?", "?", "?", "?", "?"],
+                    ownerEmail: "COMMUNITY@COMMUNITY.COM",
+                    ownerUsername: "COMMUNITY_LIST",
+                    userLikes: [],
+                    userDislikes: [],
+                    usernameCommentPairs: [],
+                    viewCount: 0,
+                    published: true,
+                    isCommunity: true,
+                    itemScorePairs: itemScorePairs
+                };
+                const response = await api.createTop5List(payload);
+                if (response.data.success) {
+                    store.loadLists(store.searchParam, store.sortParam);
+                }
+                else {
+                    console.log("API FAILED TO CREATE A NEW LIST");
+                }
+            }
+        }
+        else {
+            console.log("API FAILED TO GET TOP5LISTS");
         }
     }
 

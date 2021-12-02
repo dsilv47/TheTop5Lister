@@ -90,6 +90,13 @@ function ListCard(props) {
         store.handleComment(top5List._id, comment);
     }
 
+    let editOrPublished = (top5List.publishDate) ? <div>Published: {top5List.publishDate}</div> : <div onClick={handleLoadList}>EDIT</div>;
+    let items = (top5List.isCommunity) ? top5List.itemScorePairs.map((pair) => <div>{pair.item + "-> (" + pair.score + ")"}</div>) : <div><div>{top5List.items[0]}</div>
+                <div>{top5List.items[1]}</div>
+                <div>{top5List.items[2]}</div>
+                <div>{top5List.items[3]}</div>
+                <div>{top5List.items[4]}</div></div>;
+
     let cardElement =
         <div>
             <div>
@@ -102,7 +109,7 @@ function ListCard(props) {
             </div>
             <div>Made by: {top5List.ownerUsername}</div>
             <div>Views: {top5List.viewCount}</div>
-            <div onClick={handleLoadList}>EDIT</div>
+            {editOrPublished}
             <div onClick={handleOpen}>Open</div>
         </div>
 
@@ -119,13 +126,9 @@ function ListCard(props) {
                 </div>
                 <div>Made by: {top5List.ownerUsername}</div>
                 <div>Views: {top5List.viewCount}</div>
-                <div onClick={handleLoadList}>EDIT</div>
+                {editOrPublished}
                 <div onClick={handleOpen}>Close</div>
-                <div>{top5List.items[0]}</div>
-                <div>{top5List.items[1]}</div>
-                <div>{top5List.items[2]}</div>
-                <div>{top5List.items[3]}</div>
-                <div>{top5List.items[4]}</div>
+                {items}
                 <div>Comments:</div>
                 <div>
                     {top5List.usernameCommentPairs.map((pair) => <div>{pair.username}: {pair.comment}</div>)}
