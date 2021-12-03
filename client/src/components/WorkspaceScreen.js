@@ -33,9 +33,7 @@ function WorkspaceScreen(props) {
         store.currentList.name = listName;
         store.currentList.items = items;
         store.currentList.published = true;
-        store.updateCurrentList();
-        let publishDate = new Date(store.currentList.updatedAt);
-        store.currentList.publishDate = publishDate;
+        store.currentList.publishDate = new Date().toISOString();
         store.updateCurrentList();
         store.updateOrCreateCommunity();
         store.closeCurrentList();

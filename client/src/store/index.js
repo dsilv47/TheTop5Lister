@@ -265,7 +265,7 @@ function GlobalStoreContextProvider(props) {
                 }
             }
             else if (mode === "all") {
-                top5Lists = top5Lists.filter((list) => list.published);
+                top5Lists = top5Lists.filter((list) => list.published && (!list.isCommunity));
                 if (searchParam !== "") {
                     top5Lists = top5Lists.filter((list) => list.name === searchParam);
                 }
@@ -281,18 +281,18 @@ function GlobalStoreContextProvider(props) {
             }
             if (sortParam === "publishNew") {
                 top5Lists.sort(function compare(a,b) {
-                    if (a.published && b.published) {return a.publishDate - b.publishDate}
-                    else if (a.published) {return a}
-                    else if (b.published) {return b}
-                    else {return a}
+                    if (a.published && b.published) {return new Date(b.publishDate) - new Date(a.publishDate)}
+                    else if (a.published) {return -1}
+                    else if (b.published) {return 1}
+                    else {return 0}
                 });
             }
             else if (sortParam === "publishOld") {
                 top5Lists.sort(function compare(a,b) {
-                    if (a.published && b.published) {return b.publishDate - a.publishDate}
-                    if (a.published) {return a}
-                    else if (b.published) {return b}
-                    else {return a}
+                    if (a.published && b.published) {return new Date(a.publishDate) - new Date(b.publishDate)}
+                    else if (a.published) {return -1}
+                    else if (b.published) {return 1}
+                    else {return 0}
                 });
             }
             else if (sortParam === "views") {
@@ -333,6 +333,7 @@ function GlobalStoreContextProvider(props) {
                     itemScorePairs[key] = val;
                 }
                 communityList.itemScorePairs = itemScorePairs;
+                communityList.publishDate = new Date().toISOString();
                 const response2 = await api.updateTop5ListById(communityList._id, communityList);
                 if (response2.data.success) {
                     store.loadLists(store.searchParam, store.sortParam);
@@ -359,6 +360,7 @@ function GlobalStoreContextProvider(props) {
                     usernameCommentPairs: [],
                     viewCount: 0,
                     published: true,
+                    publishDate: new Date().toISOString(),
                     isCommunity: true,
                     itemScorePairs: itemScorePairs
                 };
@@ -397,6 +399,7 @@ function GlobalStoreContextProvider(props) {
                     }
                 }
                 communityList.itemScorePairs = itemScorePairs;
+                communityList.publishDate = new Date().toISOString();
                 const response2 = await api.updateTop5ListById(communityList._id, communityList);
                 if (response2.data.success) {
                     store.loadLists(store.searchParam, store.sortParam);

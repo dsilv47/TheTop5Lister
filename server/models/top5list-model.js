@@ -12,7 +12,7 @@ const Top5ListSchema = new Schema(
         usernameCommentPairs: { type: [Object], required: true },
         viewCount: { type: Number, required: true },
         published: { type: Boolean, required: true },
-        publishDate: { type: Date, required: false },
+        publishDate: { type: String, required: false },
         isCommunity: { type: Boolean, required: true },
         itemScorePairs: { type: Object, required: false },
     },
