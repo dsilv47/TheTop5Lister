@@ -39,22 +39,13 @@ const AllListsScreen = () => {
         <div id="all-lists-screen">
             <ViewModeToolbar/>
             <div id="top5-list-selector">
-                <div id="list-selector-heading">
-                <Fab 
-                    color="primary" 
-                    aria-label="add"
-                    id="add-list-button"
-                    onClick={handleCreateNewList}
-                    disabled={store.isListNameEditActive}
-                >
-                    <AddIcon />
-                </Fab>
-                    <Typography variant="h2">Your Lists (All)</Typography>
-                </div>
                 <div id="list-selector-list">
                     {
                         listCard
                     }
+                </div>
+                <div id="list-selector-heading">
+                    <Typography variant="h3">{store.searchParam ? store.searchParam : "All"} Lists</Typography>
                 </div>
                 <DeleteModal></DeleteModal>
             </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { GlobalStoreContext } from '../store'
 import ListCard from './ListCard.js'
-import { Fab, Typography } from '@mui/material'
+import { IconButton, Typography } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 import List from '@mui/material/List';
 import DeleteModal from './DeleteModal.js';
@@ -39,22 +39,23 @@ const HomeScreen = () => {
         <div id="home-screen">
             <ViewModeToolbar/>
             <div id="top5-list-selector">
+                <div id="list-selector-list">
+                    {
+                        listCard
+                    }
+                </div>
                 <div id="list-selector-heading">
-                <Fab 
+                <IconButton
+                    size="large"
                     color="primary" 
                     aria-label="add"
                     id="add-list-button"
                     onClick={handleCreateNewList}
                     disabled={store.isListNameEditActive}
                 >
-                    <AddIcon />
-                </Fab>
-                    <Typography variant="h2">Your Lists</Typography>
-                </div>
-                <div id="list-selector-list">
-                    {
-                        listCard
-                    }
+                    <AddIcon sx={{width: 60, height: 60, color: 'black'}}/>
+                </IconButton>
+                    <Typography variant="h3">Your Lists</Typography>
                 </div>
                 <DeleteModal></DeleteModal>
             </div>

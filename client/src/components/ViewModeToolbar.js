@@ -63,27 +63,29 @@ export default function ViewModeToolbar() {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" id="top5-view-mode-toolbar" sx={{backgroundColor: '#c4c4c4'}}>
                 <Toolbar>
-                    <IconButton size="large">
-                        <Link to='/'><HomeIcon/></Link>
+                    <Box sx={{width: 25}}></Box>
+                    <IconButton>
+                        <Link to='/'><HomeIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
-                    <IconButton size="large">
-                        <Link to='/all'><GroupsIcon/></Link>
+                    <IconButton>
+                        <Link to='/all'><GroupsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
-                    <IconButton size="large">
-                        <Link to='/users'><PersonIcon/></Link>
+                    <IconButton>
+                        <Link to='/users'><PersonIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
-                    <IconButton size="large">
-                        <Link to='/community'><FunctionsIcon/></Link>
+                    <IconButton>
+                        <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
                     <TextField
                         margin="normal"
-                        fullWidth
+                        style={{backgroundColor: 'white', width: 610}}
                         id="search-bar"
                         label="Search"
                         name="search"
                         autoComplete=""
                         onKeyPress={handleSearch}
                     />
+                    <Box sx={{width: 195}}></Box>
                     <Typography color="black">SORT BY</Typography>
                     <IconButton
                             id="sort-button"
@@ -92,7 +94,7 @@ export default function ViewModeToolbar() {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <SortIcon/>
+                            <SortIcon sx={{width: 30, height: 30, color: 'black'}}/>
                         </IconButton>
                 </Toolbar>
             </AppBar>
