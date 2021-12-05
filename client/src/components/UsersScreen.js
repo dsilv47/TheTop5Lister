@@ -18,13 +18,10 @@ const UsersScreen = () => {
         store.loadLists("", "publishNew");
     }, []);
 
-    function handleCreateNewList() {
-        store.createNewList();
-    }
     let listCard = "";
     if (store) {
         listCard = 
-            <List sx={{ width: '90%', left: '5%', bgcolor: 'background.paper' }}>
+            <List sx={{ width: '90%', left: '5%', bgcolor: '#c4c4c4' }}>
             {
                 store.top5Lists.map((list) => (
                     <ListCard

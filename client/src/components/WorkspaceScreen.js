@@ -5,6 +5,9 @@ import { GlobalStoreContext } from '../store/index.js'
 import ViewModeToolbar from './ViewModeToolbar.js'
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import AddIcon from '@mui/icons-material/Add';
 /*
     This React component lets us edit a loaded list, which only
     happens when we are on the proper route.
@@ -91,22 +94,28 @@ function WorkspaceScreen(props) {
     let editItems = "";
     if (store.currentList) {
         editItems = 
-            <List id="edit-items" sx={{ width: '100%', bgcolor: 'background.paper' }}>
+            <Box sx={{borderRadius: 2, bgcolor: '#2e316e', marginLeft: '10px', width: '98%', height: '77%'}}>
                 {
                     items.map((item, index) => (
-                        <TextField
-                        margin="normal"
-                        fullWidth
-                        id={"top5-item-" + (index)}
-                        name="item"
-                        autoComplete=""
-                        defaultValue={item}
-                        onKeyPress={handleItemKeyPress}
-                        onBlur={handleItemBlur}
-                        />
+                        <Box sx={{display: "flex", height: '20%'}}>
+                            <Box sx={{display: "inline", borderRadius: 1, width: '50px', height: '45px', bgcolor: '#c8ae44', margin: '10px', marginRight: '10px'}}>
+                                <Typography sx={{fontSize: '24px', fontWeight: 'bold', textAlign: 'center'}}>{index+1 + "."}</Typography>
+                            </Box>
+                            <TextField
+                            margin="normal"
+                            sx={{bgcolor: '#c8ae44', borderRadius: 1, display: "inline", width: '1000px', height: '45px', bottom: '6px'}}
+                            InputProps={{style: {width: '100%', height: '100%'}}}
+                            id={"top5-item-" + (index)}
+                            name="item"
+                            autoComplete=""
+                            defaultValue={item}
+                            onKeyPress={handleItemKeyPress}
+                            onBlur={handleItemBlur}
+                            />
+                        </Box>
                     ))
                 }
-            </List>;
+            </Box>;
     }
     let savable = isSavable();
     let publishable = isPublishable();
@@ -114,7 +123,39 @@ function WorkspaceScreen(props) {
     return (
         <div>
             <ViewModeToolbar/>
-            <TextField
+            <div id="top5-workspace">
+                <Box sx={{borderRadius: 1, border: 1, borderColor: 'black', bgcolor: '#d4d5f4', marginLeft: '5%', width: '90%', height: '90%'}}>
+                    <TextField
+                        margin="normal"
+                        sx={{backgroundColor: 'white', width: '50%', marginLeft: '10px', height: '5%'}}
+                        InputProps={{style: {width: '100%', height: '100%'}}}
+                        id="change-list-name"
+                        name="name"
+                        autoComplete=""
+                        defaultValue={listName}
+                        onKeyPress={handleKeyPress}
+                        onBlur={handleBlur}
+                    />
+                    {editItems}
+                    <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 50, right: 210, bgcolor: '#dddddd', color: 'black', border: 1, borderRadius: 1, borderColor: 'black', width: '100px', height: '40px', fontSize: '20px', fontWeight: 'bold', ':hover': {bgcolor: '#dddddd'}}} onClick={handleSave} disabled={!savable}>Save</Button>
+                    <Button variant="contained" id="publish-button" sx={{position: 'absolute', bottom: 50, right: 72, bgcolor: '#dddddd', color: 'black', border: 1, borderRadius: 1, borderColor: 'black', width: '120px', height: '40px', fontSize: '20px', fontWeight: 'bold', ':hover': {bgcolor: '#dddddd'}}} onClick={handlePublish} disabled={!publishable}>Publish</Button>
+                </Box>
+                <div id="top5-workspace-footer">
+                <IconButton
+                    size="large"
+                    color="primary" 
+                    aria-label="add"
+                    id="add-list-button"
+                    disabled
+                >
+                    <AddIcon sx={{width: 60, height: 60, bgcolor: 'transparent'}}/>
+                </IconButton>
+                    <Typography variant="h3" sx={{bgcolor: 'transparent'}}>Your Lists</Typography>
+            </div>
+            </div>
+        </div>);
+
+            /*<TextField
                         margin="normal"
                         fullWidth
                         id="change-list-name"
@@ -136,10 +177,10 @@ function WorkspaceScreen(props) {
                     {editItems}
                 </div>
             </div>
-            <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 0, right: 100}} onClick={handleSave} disabled={!savable}>Save</Button>
+            <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 0, right: 100, bgcolor: '#dddddd'}} onClick={handleSave} disabled={!savable}>Save</Button>
             <Button variant="contained" id="publish-button" sx={{position: 'absolute', bottom: 0, right: 0}} onClick={handlePublish} disabled={!publishable}>Publish</Button>
         </div>
-    )
+    )*/
 }
 
 export default WorkspaceScreen;

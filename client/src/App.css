@@ -144,7 +144,7 @@ body {
 #top5-list-selector {
   position: absolute;
   left: 0%;
-  top: 23%; /*this&height is how you add toolbar*/
+  top: 23%;
   width: 100%;
   height: 70%;
   background-color: #c4c4c4;
@@ -152,11 +152,25 @@ body {
 
 #top5-workspace {
   position: absolute;
-  left: 5%;
-  top: 33%;
-  width: 90%;
-  height: 60%;
-  background-color: var(--swatch-accent);
+  left: 0%;
+  top: 23%;
+  width: 100%;
+  height: 70%;
+  background-color: #c4c4c4;
+}
+
+#top5-workspace-footer {
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  width: 100%;
+  height: 0%;
+  text-align: center;
+  font-size: 24pt;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #top5-statusbar {

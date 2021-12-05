@@ -9,9 +9,9 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import GroupsIcon from '@mui/icons-material/Groups';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import FunctionsIcon from '@mui/icons-material/Functions';
 import TextField from '@mui/material/TextField';
 import SortIcon from '@mui/icons-material/Sort';
@@ -34,7 +34,7 @@ export default function ViewModeToolbar() {
 
     function handleSearch(event) {
         if (event.code === "Enter") {
-            store.loadLists(event.target.value);
+            store.loadLists(event.target.value, store.sortParam);
         }
     }
 
@@ -65,13 +65,13 @@ export default function ViewModeToolbar() {
                 <Toolbar>
                     <Box sx={{width: 25}}></Box>
                     <IconButton>
-                        <Link to='/'><HomeIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+                        <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
                     <IconButton>
-                        <Link to='/all'><GroupsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+                        <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
                     <IconButton>
-                        <Link to='/users'><PersonIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+                        <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
                     </IconButton>
                     <IconButton>
                         <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
@@ -85,8 +85,8 @@ export default function ViewModeToolbar() {
                         autoComplete=""
                         onKeyPress={handleSearch}
                     />
-                    <Box sx={{width: 195}}></Box>
-                    <Typography color="black">SORT BY</Typography>
+                    <Box sx={{width: 170}}></Box>
+                    <Typography fontSize="20px" color="black">SORT BY</Typography>
                     <IconButton
                             id="sort-button"
                             size="large"
@@ -94,7 +94,7 @@ export default function ViewModeToolbar() {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <SortIcon sx={{width: 30, height: 30, color: 'black'}}/>
+                            <SortIcon sx={{width: 40, height: 40, color: 'black'}}/>
                         </IconButton>
                 </Toolbar>
             </AppBar>
