@@ -115,15 +115,15 @@ function ListCard(props) {
             </Box>
             <Box sx={{width: '50%', height: '100%', display: 'inline-block', verticalAlign: 'top'}}>
                 <Box sx={{width: '100%', height: '50%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
-                    <IconButton display="inline" onClick={handleLike}>{liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>}</IconButton>
-                    <Typography display="inline" marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
-                    <IconButton display="inline" onClick={handleDislike}>{disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>}</IconButton>
-                    <Typography display="inline" marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
+                    <IconButton display="inline" disabled={!top5List.published} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
+                    <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
+                    <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
+                    <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
                     <IconButton display="inline" onClick={handleDeleteList}><DeleteOutlinedIcon/></IconButton>
                 </Box>
                 <Box sx={{width: '100%', height: '50%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
-                    <Typography display="inline" marginLeft="8px" fontSize="12px" fontWeight="bold" color="black">Views: </Typography>
-                    <Typography display="inline" marginLeft="10px" marginRight="120px" fontSize="12px" fontWeight="bold" color="darkRed">{top5List.viewCount}</Typography>
+                    <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginLeft="8px" fontSize="12px" fontWeight="bold" color="black">Views: </Typography>
+                    <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginLeft="10px" marginRight="120px" fontSize="12px" fontWeight="bold" color="darkRed">{top5List.viewCount}</Typography>
                     <IconButton display="inline" onClick={handleOpen}><ExpandMoreIcon/></IconButton>
                 </Box>
             </Box>
@@ -141,16 +141,16 @@ function ListCard(props) {
                 </Box>
                 <Box sx={{width: '50%', height: '100%', display: 'inline-block', verticalAlign: 'top'}}>
                     <Box sx={{width: '100%', height: '16%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
-                        <IconButton display="inline" onClick={handleLike}>{liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>}</IconButton>
-                        <Typography display="inline" marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
-                        <IconButton display="inline" onClick={handleDislike}>{disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>}</IconButton>
-                        <Typography display="inline" marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
+                        <IconButton display="inline" disabled={!top5List.published} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
+                        <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
+                        <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
+                        <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
                         <IconButton display="inline" onClick={handleDeleteList}><DeleteOutlinedIcon/></IconButton>
                     </Box>
-                    {comments}
+                    {top5List.published ? comments : <Box sx={{width: '100%', height: '74%', display: 'inline-block', verticalAlign: 'top'}}></Box>}
                     <Box sx={{width: '100%', height: '10%', display: 'inline-block flex', justifyContent: 'flex-end', verticalAlign: 'top'}}>
-                        <Typography display="inline" marginLeft="8px" fontSize="12px" fontWeight="bold" color="black">Views: </Typography>
-                        <Typography display="inline" marginLeft="10px" marginRight="120px" fontSize="12px" fontWeight="bold" color="darkRed">{top5List.viewCount}</Typography>
+                        <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginLeft="8px" fontSize="12px" fontWeight="bold" color="black">Views: </Typography>
+                        <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginLeft="10px" marginRight="120px" fontSize="12px" fontWeight="bold" color="darkRed">{top5List.viewCount}</Typography>
                         <IconButton display="inline" onClick={handleOpen}><ExpandLessIcon/></IconButton>
                     </Box>
                 </Box>

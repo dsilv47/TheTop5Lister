@@ -1,0 +1,1817 @@
+[{
+  "_id": {
+    "$oid": "61a970cc3b19a944f014646c"
+  },
+  "items": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "userLikes": [
+    "david.silverman@stonybrook.edu"
+  ],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "TestOldest",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 2,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-03T01:20:12.119Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-04T21:53:31.431Z"
+  },
+  "__v": 2,
+  "publishDate": "2021-12-03T01:20:21.000Z"
+},{
+  "_id": {
+    "$oid": "61a970d53b19a944f0146474"
+  },
+  "items": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "TestOldest",
+  "ownerEmail": "COMMUNITY@COMMUNITY.COM",
+  "ownerUsername": "COMMUNITY_LIST",
+  "viewCount": 1,
+  "published": true,
+  "publishDate": "2021-12-03T01:20:21.071Z",
+  "isCommunity": true,
+  "itemScorePairs": {
+    "1": 5,
+    "2": 4,
+    "3": 3,
+    "4": 2,
+    "5": 1
+  },
+  "createdAt": {
+    "$date": "2021-12-03T01:20:21.076Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:16:43.875Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a970d73b19a944f0146478"
+  },
+  "items": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "userLikes": [],
+  "userDislikes": [
+    "david.silverman@stonybrook.edu"
+  ],
+  "usernameCommentPairs": [
+    {
+      "username": "daveed",
+      "comment": "oh wow"
+    },
+    {
+      "username": "daveed",
+      "comment": "youuuu"
+    },
+    {
+      "username": "daveed",
+      "comment": "i am going to eat an entire watermelon and it is going to be incredible. are you ready for this? okay here i go. oh yeah, this is truly a delicious watermelon, boy am i glad i tried this."
+    }
+  ],
+  "name": "TestMiddle",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 7,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-03T01:20:23.875Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-04T23:21:55.521Z"
+  },
+  "__v": 5,
+  "publishDate": "2021-12-03T01:20:31.781Z"
+},{
+  "_id": {
+    "$oid": "61a970df3b19a944f0146480"
+  },
+  "items": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "TestMiddle",
+  "ownerEmail": "COMMUNITY@COMMUNITY.COM",
+  "ownerUsername": "COMMUNITY_LIST",
+  "viewCount": 3,
+  "published": true,
+  "publishDate": "2021-12-03T01:20:31.840Z",
+  "isCommunity": true,
+  "itemScorePairs": {
+    "1": 5,
+    "2": 4,
+    "3": 3,
+    "4": 2,
+    "5": 1
+  },
+  "createdAt": {
+    "$date": "2021-12-03T01:20:31.845Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:16:45.910Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61a970e33b19a944f0146484"
+  },
+  "items": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "userLikes": [
+    "david.silverman@stonybrook.edu"
+  ],
+  "userDislikes": [],
+  "usernameCommentPairs": [
+    {
+      "username": "daveed",
+      "comment": "hello"
+    },
+    {
+      "username": "daveed",
+      "comment": "hello"
+    },
+    {
+      "username": "daveed",
+      "comment": "hello"
+    },
+    {
+      "username": "daveed",
+      "comment": "hello"
+    },
+    {
+      "username": "daveed",
+      "comment": "ratio"
+    },
+    {
+      "username": "daveed",
+      "comment": "ratio'd into oblivion you idiot, did you really think this comment would fit on one line? smh you suck at making top 5 listers lol"
+    }
+  ],
+  "name": "TestNewest",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 28,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-03T01:20:35.922Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:01:57.983Z"
+  },
+  "__v": 71,
+  "publishDate": "2021-12-03T01:20:43.514Z"
+},{
+  "_id": {
+    "$oid": "61a970eb3b19a944f014648c"
+  },
+  "items": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "TestNewest",
+  "ownerEmail": "COMMUNITY@COMMUNITY.COM",
+  "ownerUsername": "COMMUNITY_LIST",
+  "viewCount": 4,
+  "published": true,
+  "publishDate": "2021-12-03T01:20:43.568Z",
+  "isCommunity": true,
+  "itemScorePairs": {
+    "1": 5,
+    "2": 4,
+    "3": 3,
+    "4": 2,
+    "5": 1
+  },
+  "createdAt": {
+    "$date": "2021-12-03T01:20:43.574Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:22:49.328Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61aac1b8eb90d235d0c885d6"
+  },
+  "items": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "nums",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-04T01:17:44.103Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-04T22:18:17.467Z"
+  },
+  "__v": 5
+},{
+  "_id": {
+    "$oid": "61aac1c4eb90d235d0c885dc"
+  },
+  "items": [
+    "1",
+    "4",
+    "9",
+    "16",
+    "25"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Square Numbers",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 2,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-04T01:17:56.312Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:11:58.386Z"
+  },
+  "__v": 6,
+  "publishDate": "2021-12-05T02:16:57.112Z"
+},{
+  "_id": {
+    "$oid": "61aac5adeb90d235d0c8861b"
+  },
+  "items": [
+    "Shine On You Crazy Diamond",
+    "Great Gig In The Sky",
+    "Sheep",
+    "Fearless",
+    "Astronomy Domine"
+  ],
+  "userLikes": [
+    "david.silverman@stonybrook.edu"
+  ],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Pink Floyd Songs",
+  "ownerEmail": "david.silverman@stonybrook.edu",
+  "ownerUsername": "daveed",
+  "viewCount": 1,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-04T01:34:37.173Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:04:41.542Z"
+  },
+  "__v": 2,
+  "publishDate": "2021-12-05T02:03:56.069Z"
+},{
+  "_id": {
+    "$oid": "61ac1e0cb7a6680c5c521376"
+  },
+  "items": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Pink Floyd Songs",
+  "ownerEmail": "COMMUNITY@COMMUNITY.COM",
+  "ownerUsername": "COMMUNITY_LIST",
+  "viewCount": 2,
+  "published": true,
+  "publishDate": "2021-12-05T02:03:56.251Z",
+  "isCommunity": true,
+  "itemScorePairs": {
+    "Shine On You Crazy Diamond": 5,
+    "Great Gig In The Sky": 4,
+    "Sheep": 3,
+    "Fearless": 2,
+    "Astronomy Domine": 1
+  },
+  "createdAt": {
+    "$date": "2021-12-05T02:03:56.259Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T02:22:43.490Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac2119b7a6680c5c5213af"
+  },
+  "items": [
+    "?",
+    "?",
+    "?",
+    "?",
+    "?"
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [
+    {
+      "username": "domp",
+      "comment": "ratio"
+    }
+  ],
+  "name": "Square Numbers",
+  "ownerEmail": "COMMUNITY@COMMUNITY.COM",
+  "ownerUsername": "COMMUNITY_LIST",
+  "viewCount": 10,
+  "published": true,
+  "publishDate": "2021-12-05T02:26:30.764Z",
+  "isCommunity": true,
+  "itemScorePairs": {
+    "1": 7,
+    "2": 5,
+    "3": 4,
+    "4": 1,
+    "5": 2,
+    "6": 1,
+    "9": 3,
+    "16": 7,
+    "25": 2,
+    "36": 3,
+    "81": 4
+  },
+  "createdAt": {
+    "$date": "2021-12-05T02:16:57.278Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:12:16.144Z"
+  },
+  "__v": 1
+},{
+  "_id": {
+    "$oid": "61ac212fb7a6680c5c5213ce"
+  },
+  "items": [
+    "16",
+    "81",
+    "36",
+    "1",
+    "25"
+  ],
+  "userLikes": [
+    "david.silverman@stonybrook.edu",
+    "az@gmail.com"
+  ],
+  "userDislikes": [],
+  "usernameCommentPairs": [
+    {
+      "username": "daveed",
+      "comment": "damn bro who would put 81 before 36???? wtf"
+    },
+    {
+      "username": "domp",
+      "comment": "uhhhhh r u stupid + who puts 16 before 1 smfh + RATIO"
+    }
+  ],
+  "name": "Square Numbers",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 6,
+  "published": true,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T02:17:19.644Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:13:53.695Z"
+  },
+  "__v": 25,
+  "publishDate": "2021-12-05T02:17:39.171Z"
+},{
+  "_id": {
+    "$oid": "61ac81390d8d1e3ff4482cb0"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled0",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:05.603Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:46.256Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81460d8d1e3ff4482cb6"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled1",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:18.665Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:39.153Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac814b0d8d1e3ff4482cbc"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled2",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:23.717Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:23.717Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac814d0d8d1e3ff4482cc2"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled3",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:25.134Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:25.134Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac814e0d8d1e3ff4482cc8"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled4",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:26.688Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:26.688Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81500d8d1e3ff4482cce"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled5",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:28.178Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:28.178Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81510d8d1e3ff4482cd4"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled6",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:29.683Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:29.683Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81540d8d1e3ff4482cda"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled7",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:32.523Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:32.523Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81560d8d1e3ff4482ce0"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled8",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:34.476Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:34.476Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81580d8d1e3ff4482ce6"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled9",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:36.253Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:36.253Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac815a0d8d1e3ff4482cec"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled10",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:38.012Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:38.012Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac815b0d8d1e3ff4482cf2"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled11",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:39.692Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:39.692Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac815e0d8d1e3ff4482cf8"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled12",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:42.365Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:42.365Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81600d8d1e3ff4482cfe"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled13",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:44.127Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:44.127Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81610d8d1e3ff4482d04"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled14",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:45.914Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:45.914Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81630d8d1e3ff4482d0a"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled15",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:47.370Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:47.370Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81640d8d1e3ff4482d10"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled16",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:48.756Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:48.756Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81660d8d1e3ff4482d16"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled17",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:50.221Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:50.221Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81680d8d1e3ff4482d1c"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled18",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:52.281Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:52.281Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81690d8d1e3ff4482d22"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled19",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:53.718Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:53.718Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac816c0d8d1e3ff4482d28"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled20",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:56.517Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:56.517Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac816d0d8d1e3ff4482d2e"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled21",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:57.968Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:57.968Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac816f0d8d1e3ff4482d34"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled22",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:07:59.923Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:07:59.923Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81710d8d1e3ff4482d3a"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled23",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:01.730Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:01.730Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81730d8d1e3ff4482d40"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled24",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:03.277Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:03.277Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81760d8d1e3ff4482d46"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled25",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:06.713Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:06.713Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81780d8d1e3ff4482d4c"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled26",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:08.515Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:08.515Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81910d8d1e3ff4482da6"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled27",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:33.235Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:33.235Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81950d8d1e3ff4482dac"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled28",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:37.794Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:37.794Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81970d8d1e3ff4482db2"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled29",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:39.622Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:39.622Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81990d8d1e3ff4482db8"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled30",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:41.424Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:41.424Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac819c0d8d1e3ff4482dbc"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled31",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:44.401Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:44.401Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac819f0d8d1e3ff4482dc0"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled32",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:47.412Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:47.412Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81a10d8d1e3ff4482dc6"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled33",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:49.008Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:49.008Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81a20d8d1e3ff4482dcc"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled34",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:50.837Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:50.837Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81a40d8d1e3ff4482dd2"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled35",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:52.475Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:52.475Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81a60d8d1e3ff4482dd8"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled36",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:54.551Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:54.551Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81a80d8d1e3ff4482dde"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled37",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:56.460Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:56.460Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81aa0d8d1e3ff4482de4"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled38",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:58.221Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:58.221Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81ab0d8d1e3ff4482dea"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled39",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:08:59.853Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:08:59.853Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81ae0d8d1e3ff4482df0"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled40",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:02.908Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:02.908Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81b00d8d1e3ff4482df6"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled41",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:04.772Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:04.772Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81b20d8d1e3ff4482dfc"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled42",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:06.694Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:06.694Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81b50d8d1e3ff4482e02"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled43",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:09.521Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:09.521Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81ca0d8d1e3ff4482e20"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled44",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:30.647Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:30.647Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81dd0d8d1e3ff4482e36"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled45",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:49.168Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:49.168Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81df0d8d1e3ff4482e3c"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled46",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:51.887Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:51.887Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81e10d8d1e3ff4482e40"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled47",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:53.688Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:53.688Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81e30d8d1e3ff4482e44"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled48",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:55.442Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:55.442Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81e50d8d1e3ff4482e48"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled49",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:57.216Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:57.216Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ac81e70d8d1e3ff4482e4c"
+  },
+  "items": [
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "userLikes": [],
+  "userDislikes": [],
+  "usernameCommentPairs": [],
+  "name": "Untitled50",
+  "ownerEmail": "az@gmail.com",
+  "ownerUsername": "domp",
+  "viewCount": 0,
+  "published": false,
+  "isCommunity": false,
+  "createdAt": {
+    "$date": "2021-12-05T09:09:59.501Z"
+  },
+  "updatedAt": {
+    "$date": "2021-12-05T09:09:59.501Z"
+  },
+  "__v": 0
+}]

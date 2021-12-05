@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import AuthContext from '../auth';
 import { GlobalStoreContext } from '../store'
@@ -21,6 +22,7 @@ export default function ViewModeToolbar() {
     const { store } = useContext(GlobalStoreContext);
     const [anchorEl, setAnchorEl] = useState(null);
     const isMenuOpen = Boolean(anchorEl);
+    const history = useHistory();
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -63,44 +65,90 @@ export default function ViewModeToolbar() {
                         <MenuItem id="sort-dislikes" onClick={handleSort}>Dislikes</MenuItem>
                     </Menu>
 
+    let disabled = (history.location.pathname.indexOf('top5list') !== -1);
+    
+    let toolbar = 
+        <Toolbar>
+            <Box sx={{width: 25}}></Box>
+            <IconButton>
+                <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            </IconButton>
+            <IconButton>
+                <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            </IconButton>
+            <IconButton>
+                <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            </IconButton>
+            <IconButton>
+                <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            </IconButton>
+            <TextField
+                margin="normal"
+                style={{backgroundColor: 'white', width: 610}}
+                id="search-bar"
+                label="Search"
+                name="search"
+                autoComplete=""
+                onKeyPress={handleSearch}
+            />
+            <Box sx={{width: 170}}></Box>
+            <Typography fontSize="20px" color="black">SORT BY</Typography>
+            <IconButton
+                    id="sort-button"
+                    size="large"
+                    edge="end"
+                    onClick={handleProfileMenuOpen}
+                    color="inherit"
+                >
+                    <SortIcon sx={{width: 40, height: 40, color: 'black'}}/>
+                </IconButton>
+        </Toolbar>
+
+    if (disabled) {
+        toolbar = 
+            <Toolbar>
+                <Box sx={{width: 25}}></Box>
+                <IconButton disabled>
+                    <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: '#00000050'}}/></Link>
+                </IconButton>
+                <IconButton disabled>
+                    <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: '#00000050'}}/></Link>
+                </IconButton>
+                <IconButton disabled>
+                    <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: '#00000050'}}/></Link>
+                </IconButton>
+                <IconButton disabled>
+                    <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: '#00000050'}}/></Link>
+                </IconButton>
+                <TextField
+                    margin="normal"
+                    style={{backgroundColor: '#ffffff50', width: 610}}
+                    id="search-bar"
+                    label="Search"
+                    name="search"
+                    autoComplete=""
+                    onKeyPress={handleSearch}
+                    disabled
+                />
+                <Box sx={{width: 170}}></Box>
+                <Typography fontSize="20px" color="#00000050">SORT BY</Typography>
+                <IconButton
+                        id="sort-button"
+                        size="large"
+                        edge="end"
+                        onClick={handleProfileMenuOpen}
+                        color="inherit"
+                        disabled
+                    >
+                        <SortIcon sx={{width: 40, height: 40, bgcolor: 'transparent'}}/>
+                    </IconButton>
+            </Toolbar>
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" id="top5-view-mode-toolbar" sx={{backgroundColor: '#c4c4c4'}}>
-                <Toolbar>
-                    <Box sx={{width: 25}}></Box>
-                    <IconButton>
-                        <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
-                    </IconButton>
-                    <IconButton>
-                        <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
-                    </IconButton>
-                    <IconButton>
-                        <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
-                    </IconButton>
-                    <IconButton>
-                        <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
-                    </IconButton>
-                    <TextField
-                        margin="normal"
-                        style={{backgroundColor: 'white', width: 610}}
-                        id="search-bar"
-                        label="Search"
-                        name="search"
-                        autoComplete=""
-                        onKeyPress={handleSearch}
-                    />
-                    <Box sx={{width: 170}}></Box>
-                    <Typography fontSize="20px" color="black">SORT BY</Typography>
-                    <IconButton
-                            id="sort-button"
-                            size="large"
-                            edge="end"
-                            onClick={handleProfileMenuOpen}
-                            color="inherit"
-                        >
-                            <SortIcon sx={{width: 40, height: 40, color: 'black'}}/>
-                        </IconButton>
-                </Toolbar>
+                {toolbar}
             </AppBar>
             {sortMenu}
         </Box>

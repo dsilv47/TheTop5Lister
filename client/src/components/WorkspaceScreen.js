@@ -148,9 +148,9 @@ function WorkspaceScreen(props) {
                     id="add-list-button"
                     disabled
                 >
-                    <AddIcon sx={{width: 60, height: 60, bgcolor: 'transparent'}}/>
+                    <AddIcon sx={{width: 60, height: 60, bgcolor: '#transparent'}}/>
                 </IconButton>
-                    <Typography variant="h3" sx={{bgcolor: 'transparent'}}>Your Lists</Typography>
+                    <Typography variant="h3" sx={{color: '#00000050'}}>Your Lists</Typography>
             </div>
             </div>
         </div>);
