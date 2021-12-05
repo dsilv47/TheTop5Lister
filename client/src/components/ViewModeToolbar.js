@@ -28,14 +28,18 @@ export default function ViewModeToolbar() {
 
     const handleMenuClose = (event) => {
         setAnchorEl(null);
-        let sortParam = event.target.id.substring("sort-".length);
-        store.loadLists(store.searchParam, sortParam);
     };
 
     function handleSearch(event) {
         if (event.code === "Enter") {
             store.loadLists(event.target.value, store.sortParam);
         }
+    }
+
+    function handleSort(event) {
+        let sortParam = event.target.id.substring("sort-".length);
+        store.loadLists(store.searchParam, sortParam);
+        handleMenuClose();
     }
 
     const sortMenu = <Menu
@@ -52,11 +56,11 @@ export default function ViewModeToolbar() {
                         open={isMenuOpen}
                         onClose={handleMenuClose}
                     >
-                        <MenuItem id="sort-publishNew" onClick={handleMenuClose}>Publish Date (Newest)</MenuItem>
-                        <MenuItem id="sort-publishOld" onClick={handleMenuClose}>Publish Date (Oldest)</MenuItem>
-                        <MenuItem id="sort-views" onClick={handleMenuClose}>Views</MenuItem>
-                        <MenuItem id="sort-likes" onClick={handleMenuClose}>Likes</MenuItem>
-                        <MenuItem id="sort-dislikes" onClick={handleMenuClose}>Dislikes</MenuItem>
+                        <MenuItem id="sort-publishNew" onClick={handleSort}>Publish Date (Newest)</MenuItem>
+                        <MenuItem id="sort-publishOld" onClick={handleSort}>Publish Date (Oldest)</MenuItem>
+                        <MenuItem id="sort-views" onClick={handleSort}>Views</MenuItem>
+                        <MenuItem id="sort-likes" onClick={handleSort}>Likes</MenuItem>
+                        <MenuItem id="sort-dislikes" onClick={handleSort}>Dislikes</MenuItem>
                     </Menu>
 
     return (

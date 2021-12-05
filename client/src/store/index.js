@@ -296,13 +296,28 @@ function GlobalStoreContextProvider(props) {
                 });
             }
             else if (sortParam === "views") {
-                top5Lists.sort((a, b) => b.viewCount - a.viewCount);
+                top5Lists.sort(function compare(a,b) {
+                    if (a.published && b.published) {return b.viewCount - a.viewCount}
+                    else if (a.published) {return -1}
+                    else if (b.published) {return 1}
+                    else {return 0}
+                });
             }
             else if (sortParam === "likes") {
-                top5Lists.sort((a, b) => b.userLikes.length - a.userLikes.length);
+                top5Lists.sort(function compare(a,b) {
+                    if (a.published && b.published) {return b.userLikes.length - a.userLikes.length}
+                    else if (a.published) {return -1}
+                    else if (b.published) {return 1}
+                    else {return 0}
+                });
             }
             else if (sortParam === "dislikes") {
-                top5Lists.sort((a, b) => b.userDislikes.length - a.userDislikes.length);
+                top5Lists.sort(function compare(a,b) {
+                    if (a.published && b.published) {return b.userDislikes.length - a.userDislikes.length}
+                    else if (a.published) {return -1}
+                    else if (b.published) {return 1}
+                    else {return 0}
+                });
             }
             storeReducer({
                 type: GlobalStoreActionType.LOAD_LISTS,
