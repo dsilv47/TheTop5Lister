@@ -261,22 +261,22 @@ function GlobalStoreContextProvider(props) {
             if (mode === "") {
                 top5Lists = top5Lists.filter((list) => list.ownerUsername === auth.user.username);
                 if (searchParam !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name.indexOf(searchParam) === 0);
+                    top5Lists = top5Lists.filter((list) => list.name.toLowerCase().indexOf(searchParam.toLowerCase()) === 0);
                 }
             }
             else if (mode === "all") {
                 top5Lists = top5Lists.filter((list) => list.published && (!list.isCommunity));
                 if (searchParam !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name === searchParam);
+                    top5Lists = top5Lists.filter((list) => list.name.toLowerCase() === searchParam.toLowerCase());
                 }
             }
             else if (mode === "users") {
-                top5Lists = (searchParam === "") ? [] : top5Lists.filter((list) => list.published && list.ownerUsername === searchParam);
+                top5Lists = (searchParam === "") ? [] : top5Lists.filter((list) => list.published && list.ownerUsername.toLowerCase() === searchParam.toLowerCase());
             }
             else if (mode === "community") {
                 top5Lists = top5Lists.filter((list) => list.published && list.isCommunity);
                 if (searchParam !== "") {
-                    top5Lists = top5Lists.filter((list) => list.name.indexOf(searchParam) === 0);
+                    top5Lists = top5Lists.filter((list) => list.name.toLowerCase() === searchParam.toLowerCase());
                 }
             }
             if (sortParam === "publishNew") {
@@ -337,7 +337,7 @@ function GlobalStoreContextProvider(props) {
     store.updateOrCreateCommunity = async function () {
         const response = await api.getTop5Lists();
         if (response.data.success) {
-            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name === store.currentList.name);
+            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name.toLowerCase() === store.currentList.name.toLowerCase());
             if (communityLists.length === 1) {
                 let communityList = communityLists[0];
                 let items = store.currentList.items;
@@ -397,8 +397,8 @@ function GlobalStoreContextProvider(props) {
     store.updateOrDeleteCommunity = async function () {
         const response = await api.getTop5Lists();
         if (response.data.success) {
-            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name === store.listMarkedForDeletion.name);
-            let listsInvolved = response.data.data.filter((list) => (!list.isCommunity) && list.name === store.listMarkedForDeletion.name)
+            let communityLists = response.data.data.filter((list) => list.isCommunity && list.name.toLowerCase() === store.listMarkedForDeletion.name.toLowerCase());
+            let listsInvolved = response.data.data.filter((list) => (!list.isCommunity) && list.name.toLowerCase() === store.listMarkedForDeletion.name.toLowerCase())
             if (listsInvolved.length > 1) {
                 let communityList = communityLists[0];
                 let items = store.listMarkedForDeletion.items;
@@ -464,7 +464,9 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.deleteMarkedList = function () {
-        store.updateOrDeleteCommunity();
+        if (store.listMarkedForDeletion.published) {
+            store.updateOrDeleteCommunity();
+        }
         store.deleteList(store.listMarkedForDeletion);
     }
 
@@ -622,7 +624,7 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.alreadyPublished = function (name) {
-        let lists = store.top5Lists.filter((list) => list.published && list.name === name);
+        let lists = store.top5Lists.filter((list) => list.published && list.name.toLowerCase() === name.toLowerCase());
         return (lists.length !== 0);
     }
 

@@ -66,21 +66,25 @@ export default function ViewModeToolbar() {
                     </Menu>
 
     let disabled = (history.location.pathname.indexOf('top5list') !== -1);
+    let homeDisabled = (history.location.pathname === "/" || !auth.loggedIn);
+    let allDisabled = (history.location.pathname === "/all");
+    let usersDisabled = (history.location.pathname === "/users");
+    let communityDisabled = (history.location.pathname === "/community");
     
     let toolbar = 
         <Toolbar>
             <Box sx={{width: 25}}></Box>
-            <IconButton>
-                <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            <IconButton disabled={homeDisabled}>
+                <Link to='/'><HomeOutlinedIcon sx={{width: 30, height: 30, color: homeDisabled ? '#00000050' : 'black'}}/></Link>
             </IconButton>
-            <IconButton>
-                <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            <IconButton disabled={allDisabled}>
+                <Link to='/all'><GroupsOutlinedIcon sx={{width: 30, height: 30, color: allDisabled ? '#00000050' : 'black'}}/></Link>
             </IconButton>
-            <IconButton>
-                <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            <IconButton disabled={usersDisabled}>
+                <Link to='/users'><PersonOutlinedIcon sx={{width: 30, height: 30, color: usersDisabled ? '#00000050' : 'black'}}/></Link>
             </IconButton>
-            <IconButton>
-                <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: 'black'}}/></Link>
+            <IconButton disabled={communityDisabled}>
+                <Link to='/community'><FunctionsIcon sx={{width: 30, height: 30, color: communityDisabled ? '#00000050' : 'black'}}/></Link>
             </IconButton>
             <TextField
                 margin="normal"

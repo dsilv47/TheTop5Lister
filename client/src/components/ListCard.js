@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { GlobalStoreContext } from '../store';
 import AuthContext from '../auth';
 import TextField from '@mui/material/TextField';
@@ -27,6 +28,7 @@ function ListCard(props) {
     const { store } = useContext(GlobalStoreContext);
     const [opened, setOpened] = useState(false);
     const { top5List } = props;
+    const history = useHistory();
 
     function handleOpen() {
         if (!opened && top5List.published) {
@@ -62,6 +64,7 @@ function ListCard(props) {
     async function handleComment(event) {
         if (event.code === "Enter" && top5List.published) {
             store.handleComment(top5List._id, event.target.value);
+            event.target.value = "";
         }
     }
 
@@ -105,6 +108,8 @@ function ListCard(props) {
     let liked = (auth.user ? top5List.userLikes.indexOf(auth.user.email) !== -1 : false);
     let disliked = (auth.user ? top5List.userDislikes.indexOf(auth.user.email) !== -1 : false);
 
+    let deleteHidden = (history.location.pathname !== "/");
+
     let cardElement = 
         <Box sx={{borderRadius: 1, borderColor: 'black', border: 1, marginBottom: '5px', height: 73, backgroundColor: top5List.published ? '#d4d5f4' : '#fffff2'}}>
             <Box sx={{width: '50%', height: '100%', display: 'inline-block', verticalAlign: 'top'}}>
@@ -119,7 +124,7 @@ function ListCard(props) {
                     <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
                     <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
                     <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
-                    <IconButton display="inline" onClick={handleDeleteList}><DeleteOutlinedIcon/></IconButton>
+                    <IconButton display="inline" disabled={deleteHidden} onClick={handleDeleteList}><DeleteOutlinedIcon sx={{color: deleteHidden ? '#00000000' : '#000000'}}/></IconButton>
                 </Box>
                 <Box sx={{width: '100%', height: '50%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
                     <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginLeft="8px" fontSize="12px" fontWeight="bold" color="black">Views: </Typography>
@@ -145,7 +150,7 @@ function ListCard(props) {
                         <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
                         <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
                         <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
-                        <IconButton display="inline" onClick={handleDeleteList}><DeleteOutlinedIcon/></IconButton>
+                        <IconButton display="inline" disabled={deleteHidden} onClick={handleDeleteList}><DeleteOutlinedIcon sx={{color: deleteHidden ? '#00000000' : '#000000'}}/></IconButton>
                     </Box>
                     {top5List.published ? comments : <Box sx={{width: '100%', height: '74%', display: 'inline-block', verticalAlign: 'top'}}></Box>}
                     <Box sx={{width: '100%', height: '10%', display: 'inline-block flex', justifyContent: 'flex-end', verticalAlign: 'top'}}>

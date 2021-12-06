@@ -52,6 +52,10 @@ function WorkspaceScreen(props) {
         setListName(event.target.value);
     }
 
+    function handleChange(event) {
+        setListName(event.target.value);
+    }
+
     function handleItemKeyPress(event) {
         if (event.code === "Enter") {
             handleItemBlur(event);
@@ -67,19 +71,23 @@ function WorkspaceScreen(props) {
         setItems(list);
     }
 
+    function handleItemChange(event) {
+        handleItemBlur(event);
+    }
+
     function isSavable() {
         return !(listName === "");
     }
 
     function isPublishable() {
-        if (listName === "") {
+        if (listName === "" || listName.charAt(0) === " ") {
             return false;
         }
         if (store.alreadyPublished(listName)) {
             return false;
         }
         for (let i = 0; i < items.length; i++) {
-            if (items[i] === "") {
+            if (items[i] === "" || items[i].charAt(0) === " ") {
                 return false;
             }
             for (let j = (i+1); j < items.length; j++) {
@@ -111,6 +119,7 @@ function WorkspaceScreen(props) {
                             defaultValue={item}
                             onKeyPress={handleItemKeyPress}
                             onBlur={handleItemBlur}
+                            onChange={handleItemChange}
                             />
                         </Box>
                     ))
@@ -135,6 +144,7 @@ function WorkspaceScreen(props) {
                         defaultValue={listName}
                         onKeyPress={handleKeyPress}
                         onBlur={handleBlur}
+                        onChange={handleChange}
                     />
                     {editItems}
                     <Button variant="contained" id="save-button" sx={{position: 'absolute', bottom: 50, right: 210, bgcolor: '#dddddd', color: 'black', border: 1, borderRadius: 1, borderColor: 'black', width: '100px', height: '40px', fontSize: '20px', fontWeight: 'bold', ':hover': {bgcolor: '#dddddd'}}} onClick={handleSave} disabled={!savable}>Save</Button>
