@@ -62,14 +62,15 @@ function ListCard(props) {
     }
 
     async function handleComment(event) {
-        if (event.code === "Enter" && top5List.published) {
+        if (event.code === "Enter" && top5List.published && event.target.value !== "") {
             store.handleComment(top5List._id, event.target.value);
             event.target.value = "";
         }
     }
 
     let editOrPublished = (top5List.publishDate) ? <div>
-        <Typography display="inline" fontSize="12px" fontWeight="bold" marginLeft="10px">Published: </Typography><Typography display="inline" fontSize="12px" fontWeight="bold" color="green">{new Date(top5List.publishDate).toDateString().substring(4)}</Typography></div> : <Typography sx={{textDecoration: 'underline', fontSize: '12px', color: 'red'}} marginLeft="10px" onClick={handleLoadList}>Edit</Typography>;
+        <Typography display="inline" fontSize="12px" fontWeight="bold" marginLeft="10px">{top5List.isCommunity ? 
+        'Updated: ' : 'Published: '}</Typography><Typography display="inline" fontSize="12px" fontWeight="bold" color="green">{new Date(top5List.publishDate).toDateString().substring(4)}</Typography></div> : <Typography sx={{textDecoration: 'underline', fontSize: '12px', color: 'red'}} marginLeft="10px" onClick={handleLoadList}>Edit</Typography>;
 
     let communityItems = [];
     if (top5List.isCommunity) {

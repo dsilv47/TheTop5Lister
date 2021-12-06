@@ -91,7 +91,7 @@ function WorkspaceScreen(props) {
                 return false;
             }
             for (let j = (i+1); j < items.length; j++) {
-                if (items[i] === items[j]) {
+                if (items[i].toLowerCase() === items[j].toLowerCase()) {
                     return false;
                 }
             }

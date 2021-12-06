@@ -343,8 +343,8 @@ function GlobalStoreContextProvider(props) {
                 let items = store.currentList.items;
                 let itemScorePairs = communityList.itemScorePairs;
                 for (let i = 0; i < items.length; i++) {
-                    let key = items[i];
-                    let val = itemScorePairs[items[i]] ? itemScorePairs[items[i]] + (5-i) : (5-i);
+                    let key = items[i].toLowerCase();
+                    let val = itemScorePairs[key] ? itemScorePairs[key] + (5-i) : (5-i);
                     itemScorePairs[key] = val;
                 }
                 communityList.itemScorePairs = itemScorePairs;
@@ -361,7 +361,7 @@ function GlobalStoreContextProvider(props) {
                 let items = store.currentList.items;
                 let itemScorePairs = {};
                 for (let i = 0; i < items.length; i++) {
-                    let key = items[i];
+                    let key = items[i].toLowerCase();
                     let val = 5-i;
                     itemScorePairs[key] = val;
                 }
@@ -404,8 +404,8 @@ function GlobalStoreContextProvider(props) {
                 let items = store.listMarkedForDeletion.items;
                 let itemScorePairs = communityList.itemScorePairs;
                 for (let i = 0; i < items.length; i++) {
-                    let key = items[i];
-                    let val = itemScorePairs[items[i]] ? itemScorePairs[items[i]] - (5-i) : (5-i);
+                    let key = items[i].toLowerCase();
+                    let val = itemScorePairs[key] ? itemScorePairs[key] - (5-i) : (5-i);
                     if (val === 0) {
                         delete itemScorePairs[key];
                     }
