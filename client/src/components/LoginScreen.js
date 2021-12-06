@@ -24,7 +24,7 @@ export default function LoginScreen() {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     auth.loginUser({
-            email: formData.get('email'),
+            username: formData.get('username'),
             password: formData.get('password'),
         }, store);
   };
@@ -33,21 +33,7 @@ export default function LoginScreen() {
     <Grid container component="main" maxWidth="xs">
       <ErrorModal></ErrorModal>
       <CssBaseline />
-      <Grid
-        item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{
-          backgroundImage: 'url(https://source.unsplash.com/random)',
-          backgroundRepeat: 'no-repeat',
-          backgroundColor: (t) =>
-            t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={12} md={12} component={Paper} elevation={6} square>
         <Box
           sx={{
             my: 8,
@@ -68,10 +54,10 @@ export default function LoginScreen() {
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField

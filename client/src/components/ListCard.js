@@ -95,12 +95,13 @@ function ListCard(props) {
             <Box sx={{ height: '27%', width: '100%', verticalAlign: 'top'}}>
                 <TextField
                     margin="normal"
-                    sx={{borderRadius: 2, backgroundColor: 'white', marginTop: '8px', width: '100%'}}
+                    sx={{borderRadius: 2, backgroundColor: auth.user ? 'white' : '#ffffff50', marginTop: '8px', width: '100%'}}
                     id="comment"
                     label="Add Comment"
                     name="comment"
                     autoComplete=""
                     onKeyPress={handleComment}
+                    disabled={!auth.user}
                 />
             </Box>
         </Box>;
@@ -120,9 +121,9 @@ function ListCard(props) {
             </Box>
             <Box sx={{width: '50%', height: '100%', display: 'inline-block', verticalAlign: 'top'}}>
                 <Box sx={{width: '100%', height: '50%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
-                    <IconButton display="inline" disabled={!top5List.published} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
+                    <IconButton display="inline" disabled={!top5List.published || !auth.user} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
                     <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
-                    <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
+                    <IconButton display="inline" disabled={!top5List.published || !auth.user} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
                     <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
                     <IconButton display="inline" disabled={deleteHidden} onClick={handleDeleteList}><DeleteOutlinedIcon sx={{color: deleteHidden ? '#00000000' : '#000000'}}/></IconButton>
                 </Box>
@@ -146,9 +147,9 @@ function ListCard(props) {
                 </Box>
                 <Box sx={{width: '50%', height: '100%', display: 'inline-block', verticalAlign: 'top'}}>
                     <Box sx={{width: '100%', height: '16%', display: 'inline-block flex', justifyContent: 'flex-end'}}>
-                        <IconButton display="inline" disabled={!top5List.published} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
+                        <IconButton display="inline" disabled={!top5List.published || !auth.user} onClick={handleLike}>{top5List.published ? (liked ? <ThumbUpIcon/> : <ThumbUpOutlinedIcon/>) : null}</IconButton>
                         <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="40px" fontSize="18px" fontWeight="bold">{top5List.userLikes.length}</Typography>
-                        <IconButton display="inline" disabled={!top5List.published} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
+                        <IconButton display="inline" disabled={!top5List.published || !auth.user} onClick={handleDislike}>{top5List.published ? (disliked ? <ThumbDownIcon/> : <ThumbDownOutlinedIcon/>) : null}</IconButton>
                         <Typography display="inline" visibility={top5List.published ? "shown" : "hidden"} marginRight="50px" fontSize="18px" fontWeight="bold">{top5List.userDislikes.length}</Typography>
                         <IconButton display="inline" disabled={deleteHidden} onClick={handleDeleteList}><DeleteOutlinedIcon sx={{color: deleteHidden ? '#00000000' : '#000000'}}/></IconButton>
                     </Box>
